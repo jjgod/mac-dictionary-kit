@@ -1,16 +1,16 @@
 #
-#  DUWindow.py
+#  DUImageView.py
 #  DictUnifier
 #
 #  Created by Jiang Jiang on 3/7/10.
 #  Copyright (c) 2010 Jjgod Jiang. All rights reserved.
 #
 
-import objc
+from objc import YES, NO, IBAction, IBOutlet
 from Foundation import *
 from AppKit import *
 
-class DUWindow(NSWindow):
+class DUImageView(NSImageView):
     controller = objc.IBOutlet()
 
     def awakeFromNib(self):
@@ -32,3 +32,4 @@ class DUWindow(NSWindow):
             self.controller.startConversion(files[0])
             successful = True
         return successful
+
