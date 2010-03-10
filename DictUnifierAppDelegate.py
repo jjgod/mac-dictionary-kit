@@ -146,6 +146,8 @@ class DictUnifierAppDelegate(NSObject):
         self.nameField.setStringValue_(convert_result[0].decode("utf-8"))
         self.totalEntries = int(convert_result[1])
 
+        print("total entries: %d" % self.totalEntries)
+
         self.setStatus("Enter a name to start building")
         self.nameField.setHidden_(False)
         self.nameField.setEnabled_(True)
@@ -189,6 +191,9 @@ class DictUnifierAppDelegate(NSObject):
         self.button.setHidden_(False)
 
         while True:
+            if self.process.poll() != None:
+                break
+
             if f is None and os.path.isfile(body_list):
                 f = open(body_list)
                 if f:
@@ -233,5 +238,3 @@ class DictUnifierAppDelegate(NSObject):
 
         self.cleanup()
         self.setStatus("Done.")
-
-        pool.release()
