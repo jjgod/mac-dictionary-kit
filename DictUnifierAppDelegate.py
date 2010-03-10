@@ -82,9 +82,13 @@ class DictUnifierAppDelegate(NSObject):
         self.performSelectorInBackground_withObject_(self.startBuildingWith_, dict_name)
 
     def startConversion(self, dict_file):
+        self.performSelectorInBackground_withObject_(self.startConversionWith_, dict_file)
+
+    def startConversionWith_(self, dict_file):
         script_file   = None
         script_module = { ".py": "python" }
 
+        pool = NSAutoreleasePool.new()
         self.cleanup()
         os.makedirs(self.tempDir)
 
@@ -116,23 +120,32 @@ class DictUnifierAppDelegate(NSObject):
         print("self.dictID = %s" % self.dictID)
 
         self.dictDir = os.path.join(self.tempDir, "dict-%s" % self.dictID)
+
         bundle = NSBundle.mainBundle()
         shutil.copytree(os.path.join(bundle.resourcePath(), "templates"), self.dictDir)
 
         cmd = "%s '%s' '%s/Dictionary.xml'" % (bundle.pathForAuxiliaryExecutable_("sdconv"), ifo_file, self.dictDir)
         print(cmd)
 
+        self.dropper.setHidden_(True)
+        self.showProgress()
         self.setStatus("Converting %s..." % os.path.basename(dict_file))
         (status, output) = commands.getstatusoutput(cmd)
         if status != 0:
             self.error("Convert %s failed, abort now." % self.dictID)
+            self.hideProgress()
             return
 
         convert_result = output.split()
+        self.performSelectorOnMainThread_withObject_waitUntilDone_(self.prepareName_, convert_result, True)
+
+    def prepareName_(self, convert_result):
+        pool = NSAutoreleasePool.new()
+
+        self.hideProgress()
         self.nameField.setStringValue_(convert_result[0].decode("utf-8"))
         self.totalEntries = int(convert_result[1])
 
-        self.dropper.setHidden_(True)
         self.setStatus("Enter a name to start building")
         self.nameField.setHidden_(False)
         self.nameField.setEnabled_(True)
