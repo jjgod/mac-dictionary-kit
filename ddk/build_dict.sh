@@ -4,9 +4,6 @@
 #
 #
 
-DICT_BUILD_TOOL_DIR=${DICT_BUILD_TOOL_DIR:-"/Developer/Extras/Dictionary Development Kit"}
-DICT_BUILD_TOOL_BIN="$DICT_BUILD_TOOL_DIR/bin"
-
 do_add_supplementary_key=1
 preserve_unused_ref_id_in_reference_index=0
 

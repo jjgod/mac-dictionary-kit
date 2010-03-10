@@ -81,7 +81,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 07D579C311475D930033F5A4 /* sdconv */;
+			remoteGlobalIDString = 07D579C311475D930033F5A4;
 			remoteInfo = sdconv;
 		};
 /* End PBXContainerItemProxy section */
@@ -90,7 +90,7 @@
 		07D5796611475C3D0033F5A4 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = ddk;
+			dstPath = bin;
 			dstSubfolderSpec = 7;
 			files = (
 				07D57A0111475F1C0033F5A4 /* add_body_record in CopyFiles */,
@@ -300,7 +300,7 @@
 			path = templates;
 			sourceTree = "<group>";
 		};
-		07D5799111475C5E0033F5A4 /* ddk */ = {
+		07D5799111475C5E0033F5A4 /* bin */ = {
 			isa = PBXGroup;
 			children = (
 				07D579D711475F0D0033F5A4 /* add_body_record */,
@@ -325,7 +325,7 @@
 				07D579EA11475F0D0033F5A4 /* remove_duplicate_key.pl */,
 				07D579EB11475F0D0033F5A4 /* replace_entryid_bodyid.pl */,
 			);
-			name = ddk;
+			name = bin;
 			sourceTree = "<group>";
 		};
 		07D57A1911475FF30033F5A4 /* sdconv */ = {
@@ -464,7 +464,7 @@
 			isa = PBXGroup;
 			children = (
 				07D57A1911475FF30033F5A4 /* sdconv */,
-				07D5799111475C5E0033F5A4 /* ddk */,
+				07D5799111475C5E0033F5A4 /* bin */,
 				07D5795E11475B760033F5A4 /* templates */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,

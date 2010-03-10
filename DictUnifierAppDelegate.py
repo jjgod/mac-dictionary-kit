@@ -9,13 +9,19 @@
 from Foundation import *
 from AppKit import *
 
-import sys, os, glob, commands, plistlib, shutil
+import sys, os, glob, commands, plistlib, shutil, subprocess, time, re
 
 class DictUnifierAppDelegate(NSObject):
     dropper   = objc.IBOutlet()
     label     = objc.IBOutlet()
     nameField = objc.IBOutlet()
+    progressBar = objc.IBOutlet()
+    button    = objc.IBOutlet()
     tempDir   = os.path.expanduser("~/.sdconv-temp")
+    dictDir   = None
+    dictID    = None
+    process   = None
+    totalEntries = 0
 
     def applicationDidFinishLaunching_(self, sender):
         pass
@@ -23,20 +29,59 @@ class DictUnifierAppDelegate(NSObject):
     def applicationShouldTerminateAfterLastWindowClosed_(self, sender):
         return True
 
+    def applicationWillTerminate_(self, sender):
+        self.stop_(sender)
+
     def cleanup(self):
         os.system("rm -rf %s" % self.tempDir)
 
     def setStatus(self, str):
-        self.label.performSelectorOnMainThread_withObject_waitUntilDone_(self.label.setStringValue_, str, False)
+        self.label.setStringValue_(str)
+
+    def hideStatus(self):
+        self.label.setHidden_(True)
+
+    def showStatus(self):
+        self.label.setHidden_(False)
+
+    def showProgress(self):
+        self.progressBar.setIndeterminate_(True)
+        self.progressBar.setHidden_(False)
+        self.progressBar.startAnimation_(self)
+
+    def hideProgress(self):
+        self.progressBar.setIndeterminate_(True)
+        self.progressBar.stopAnimation_(self)
+        self.progressBar.setHidden_(True)
+
+    def setProgress(self, curr):
+        self.progressBar.setDoubleValue_(curr)
 
     def error(self, str):
         self.setStatus(str)
         self.cleanup()
 
-    def startConversion(self, dict_file):
-        self.performSelectorInBackground_withObject_(self.startConversionWith_, dict_file)
+    @objc.IBAction
+    def stop_(self, sender):
+        if self.process is not None:
+            os.system("kill %d" % self.process.pid)
+            os.system("killall add_body_record")
+            self.hideProgress()
+            self.setProgress(0)
+            self.button.setHidden_(True)
+            self.dropper.setHidden_(False)
+            self.setStatus("Drop a dictionary file to convert")
+            self.cleanup()
 
-    def startConversionWith_(self, dict_file):
+    @objc.IBAction
+    def startBuilding_(self, sender):
+        self.nameField.setHidden_(True)
+        self.button.setHidden_(True)
+
+        dict_name = self.nameField.stringValue()
+        self.performSelectorInBackground_withObject_(self.startBuildingWith_, dict_name)
+
+    def startConversion(self, dict_file):
         script_file   = None
         script_module = { ".py": "python" }
 
@@ -67,32 +112,113 @@ class DictUnifierAppDelegate(NSObject):
 
         print("ifo_file = %s" % ifo_file)
 
-        (dict_id, ext) = os.path.splitext(os.path.basename(ifo_file))
-        print("dict_id = %s" % dict_id)
+        (self.dictID, ext) = os.path.splitext(os.path.basename(ifo_file))
+        print("self.dictID = %s" % self.dictID)
 
-        dict_path = os.path.join(self.tempDir, "dict-%s" % dict_id)
-        pool = NSAutoreleasePool.new()
+        self.dictDir = os.path.join(self.tempDir, "dict-%s" % self.dictID)
         bundle = NSBundle.mainBundle()
-        shutil.copytree(os.path.join(bundle.resourcePath(), "templates"), dict_path)
+        shutil.copytree(os.path.join(bundle.resourcePath(), "templates"), self.dictDir)
 
-        cmd = "%s '%s' '%s/Dictionary.xml'" % (bundle.pathForAuxiliaryExecutable_("sdconv"), ifo_file, dict_path)
+        cmd = "%s '%s' '%s/Dictionary.xml'" % (bundle.pathForAuxiliaryExecutable_("sdconv"), ifo_file, self.dictDir)
         print(cmd)
 
+        self.setStatus("Converting %s..." % os.path.basename(dict_file))
         (status, output) = commands.getstatusoutput(cmd)
         if status != 0:
-            self.error("Convert %s failed, abort now." % dict_id)
-            pool.release()
+            self.error("Convert %s failed, abort now." % self.dictID)
             return
 
-        dict_name = output.split()[0].decode("utf-8")
-        print("dict_name = %s" % dict_name)
-        self.setStatus("Converting %s..." % dict_name)
+        convert_result = output.split()
+        self.nameField.setStringValue_(convert_result[0].decode("utf-8"))
+        self.totalEntries = int(convert_result[1])
 
-        plist_path = os.path.join(dict_path, "DictInfo.plist")
+        self.dropper.setHidden_(True)
+        self.setStatus("Enter a name to start building")
+        self.nameField.setHidden_(False)
+        self.nameField.setEnabled_(True)
+
+        self.button.setAction_(self.startBuilding_)
+        self.button.setTitle_("Start")
+        self.button.setHidden_(False)
+
+    def startBuildingWith_(self, dict_name):
+        pool = NSAutoreleasePool.new()
+        self.setStatus("Building %s..." % dict_name.encode("utf-8"))
+
+        plist_path = os.path.join(self.dictDir, "DictInfo.plist")
         plist = plistlib.readPlist(plist_path)
 
-        plist["CFBundleDisplayName"] = dict_name;
-        plist["CFBundleName"] = dict_name;
-        plist["CFBundleIdentifier"] = "com.apple.dictionary.%s" % dict_id
+        plist["CFBundleDisplayName"] = dict_name
+        plist["CFBundleName"] = dict_name
+        plist["CFBundleIdentifier"] = "com.apple.dictionary.%s" % self.dictID
 
         plistlib.writePlist(plist, plist_path)
+
+        bundle = NSBundle.mainBundle()
+        bin_dir = os.path.join(bundle.resourcePath(), "bin")
+        os.putenv("LANG", "en_US.UTF-8")
+        os.putenv("DICT_BUILD_TOOL_BIN", bin_dir)
+
+        args = [ "%s/build_dict.sh" % bin_dir, self.dictID, "Dictionary.xml", "Dictionary.css", "DictInfo.plist" ]
+        if commands.getoutput("sw_vers -productVersion")[:4] == "10.6":
+            args.insert(1, "-v")
+            args.insert(2, "10.6")
+
+        self.dropper.setHidden_(True)
+        self.showProgress()
+
+        self.process = subprocess.Popen(args, shell=False, cwd=self.dictDir)
+        f = None
+        body_list = os.path.join(self.dictDir, "objects", "entry_body_list.txt")
+
+        self.button.setAction_(self.stop_)
+        self.button.setTitle_("Stop")
+        self.button.setHidden_(False)
+
+        while True:
+            if f is None and os.path.isfile(body_list):
+                f = open(body_list)
+                if f:
+                    self.progressBar.setIndeterminate_(False)
+            if f:
+                where = f.tell()
+                line = f.readline()
+                if line and len(line.split()) > 1:
+                    curr = int(line.split()[0]) + 1
+                    self.setProgress(float(curr) / float(self.totalEntries) * 100.0)
+                    if curr == self.totalEntries:
+                        self.progressBar.setIndeterminate_(True)
+                        break
+                else:
+                    time.sleep(0.5)
+                    f.seek(where)
+            else:
+                time.sleep(1)
+
+        self.process.wait()
+        self.button.setHidden_(True)
+        self.hideProgress()
+
+        file = os.path.join(bundle.resourcePath(), "done.png")
+        done = NSImage.alloc().initWithContentsOfFile_(file)
+        self.dropper.setImage_(done)
+        done.release()
+
+        self.dropper.setHidden_(False)
+
+        dest_dir = os.path.expanduser("~/Library/Dictionaries")
+        self.setStatus("Installing into %s..." % dest_dir)
+
+        os.system("mkdir -p %s" % dest_dir)
+        os.system("rm -rf '%s/%s.dictionary'" % (dest_dir, self.dictID))
+        ditto_cmd = "ditto --noextattr --norsrc '%s/objects/%s.dictionary' '%s/%s.dictionary'" % (self.dictDir, self.dictID, dest_dir, self.dictID)
+        print(ditto_cmd)
+        os.system(ditto_cmd)
+        os.utime(dest_dir, None)
+
+        self.process = None
+
+        self.cleanup()
+        self.setStatus("Done.")
+
+        pool.release()
