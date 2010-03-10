@@ -10,31 +10,10 @@
 		07687D941143E9C30032F3CD /* DictUnifier.icns in Resources */ = {isa = PBXBuildFile; fileRef = 07687D931143E9C30032F3CD /* DictUnifier.icns */; };
 		07687DB91143EF690032F3CD /* done.png in Resources */ = {isa = PBXBuildFile; fileRef = 07687DB71143EF690032F3CD /* done.png */; };
 		07687DBA1143EF690032F3CD /* dropper.png in Resources */ = {isa = PBXBuildFile; fileRef = 07687DB81143EF690032F3CD /* dropper.png */; };
-		07687DFE1143F63F0032F3CD /* DUWindow.py in Resources */ = {isa = PBXBuildFile; fileRef = 07687DFD1143F63F0032F3CD /* DUWindow.py */; };
-		07687E3A1143FB250032F3CD /* DUImageView.py in Resources */ = {isa = PBXBuildFile; fileRef = 07687E391143FB250032F3CD /* DUImageView.py */; };
+		076D37D7114A37FC00D55901 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 076D37D6114A37FC00D55901 /* Localizable.strings */; };
+		076D37E3114A383500D55901 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 076D37E2114A383500D55901 /* InfoPlist.strings */; };
 		07D579B511475D080033F5A4 /* DictInfo.plist in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07D5795F11475B760033F5A4 /* DictInfo.plist */; };
 		07D579B611475D080033F5A4 /* Dictionary.css in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07D5796011475B760033F5A4 /* Dictionary.css */; };
-		07D579EC11475F0D0033F5A4 /* add_body_record in Resources */ = {isa = PBXBuildFile; fileRef = 07D579D711475F0D0033F5A4 /* add_body_record */; };
-		07D579ED11475F0D0033F5A4 /* add_key_index_record in Resources */ = {isa = PBXBuildFile; fileRef = 07D579D811475F0D0033F5A4 /* add_key_index_record */; };
-		07D579EE11475F0D0033F5A4 /* add_reference_index_record in Resources */ = {isa = PBXBuildFile; fileRef = 07D579D911475F0D0033F5A4 /* add_reference_index_record */; };
-		07D579EF11475F0D0033F5A4 /* add_supplementary_key in Resources */ = {isa = PBXBuildFile; fileRef = 07D579DA11475F0D0033F5A4 /* add_supplementary_key */; };
-		07D579F011475F0D0033F5A4 /* build_dict.sh in Resources */ = {isa = PBXBuildFile; fileRef = 07D579DB11475F0D0033F5A4 /* build_dict.sh */; };
-		07D579F111475F0D0033F5A4 /* build_key_index in Resources */ = {isa = PBXBuildFile; fileRef = 07D579DC11475F0D0033F5A4 /* build_key_index */; };
-		07D579F211475F0D0033F5A4 /* build_reference_index in Resources */ = {isa = PBXBuildFile; fileRef = 07D579DD11475F0D0033F5A4 /* build_reference_index */; };
-		07D579F311475F0D0033F5A4 /* extract_front_matter_id.pl in Resources */ = {isa = PBXBuildFile; fileRef = 07D579DE11475F0D0033F5A4 /* extract_front_matter_id.pl */; };
-		07D579F411475F0D0033F5A4 /* extract_index.pl in Resources */ = {isa = PBXBuildFile; fileRef = 07D579DF11475F0D0033F5A4 /* extract_index.pl */; };
-		07D579F511475F0D0033F5A4 /* extract_property.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 07D579E011475F0D0033F5A4 /* extract_property.xsl */; };
-		07D579F611475F0D0033F5A4 /* extract_referred_id.pl in Resources */ = {isa = PBXBuildFile; fileRef = 07D579E111475F0D0033F5A4 /* extract_referred_id.pl */; };
-		07D579F711475F0D0033F5A4 /* generate_dict_template.sh in Resources */ = {isa = PBXBuildFile; fileRef = 07D579E211475F0D0033F5A4 /* generate_dict_template.sh */; };
-		07D579F811475F0D0033F5A4 /* make_body.pl in Resources */ = {isa = PBXBuildFile; fileRef = 07D579E311475F0D0033F5A4 /* make_body.pl */; };
-		07D579F911475F0D0033F5A4 /* make_dict_package in Resources */ = {isa = PBXBuildFile; fileRef = 07D579E411475F0D0033F5A4 /* make_dict_package */; };
-		07D579FA11475F0D0033F5A4 /* make_line.pl in Resources */ = {isa = PBXBuildFile; fileRef = 07D579E511475F0D0033F5A4 /* make_line.pl */; };
-		07D579FB11475F0D0033F5A4 /* make_readonly.pl in Resources */ = {isa = PBXBuildFile; fileRef = 07D579E611475F0D0033F5A4 /* make_readonly.pl */; };
-		07D579FC11475F0D0033F5A4 /* normalize_key_text in Resources */ = {isa = PBXBuildFile; fileRef = 07D579E711475F0D0033F5A4 /* normalize_key_text */; };
-		07D579FD11475F0D0033F5A4 /* normalize_key_text.pl in Resources */ = {isa = PBXBuildFile; fileRef = 07D579E811475F0D0033F5A4 /* normalize_key_text.pl */; };
-		07D579FE11475F0D0033F5A4 /* pick_referred_entry_id.pl in Resources */ = {isa = PBXBuildFile; fileRef = 07D579E911475F0D0033F5A4 /* pick_referred_entry_id.pl */; };
-		07D579FF11475F0D0033F5A4 /* remove_duplicate_key.pl in Resources */ = {isa = PBXBuildFile; fileRef = 07D579EA11475F0D0033F5A4 /* remove_duplicate_key.pl */; };
-		07D57A0011475F0D0033F5A4 /* replace_entryid_bodyid.pl in Resources */ = {isa = PBXBuildFile; fileRef = 07D579EB11475F0D0033F5A4 /* replace_entryid_bodyid.pl */; };
 		07D57A0111475F1C0033F5A4 /* add_body_record in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07D579D711475F0D0033F5A4 /* add_body_record */; };
 		07D57A0211475F1C0033F5A4 /* add_key_index_record in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07D579D811475F0D0033F5A4 /* add_key_index_record */; };
 		07D57A0311475F1C0033F5A4 /* add_reference_index_record in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07D579D911475F0D0033F5A4 /* add_reference_index_record */; };
@@ -63,15 +42,14 @@
 		07D57A2B11475FF30033F5A4 /* python.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D57A2211475FF30033F5A4 /* python.cpp */; };
 		07D57A2C11475FF30033F5A4 /* sdconv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D57A2411475FF30033F5A4 /* sdconv.cpp */; };
 		07D57A2D11475FF30033F5A4 /* storage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D57A2511475FF30033F5A4 /* storage.cpp */; };
-		07D57A75114760BD0033F5A4 /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D57A74114760BD0033F5A4 /* Python.framework */; };
 		07D57A7A114760E00033F5A4 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D57A79114760E00033F5A4 /* libz.dylib */; };
 		07D57A7F114761780033F5A4 /* sdconv in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07D579C411475D930033F5A4 /* sdconv */; };
 		07D57A86114761EE0033F5A4 /* libglib-2.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07D57A2011475FF30033F5A4 /* libglib-2.0.dylib */; };
-		77631A270C06C501005415CB /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77631A260C06C501005415CB /* Python.framework */; };
-		77631A3F0C0748CF005415CB /* main.py in Resources */ = {isa = PBXBuildFile; fileRef = 77631A3E0C0748CF005415CB /* main.py */; };
-		7790198F0C07548A00326F66 /* DictUnifierAppDelegate.py in Resources */ = {isa = PBXBuildFile; fileRef = 7790198E0C07548A00326F66 /* DictUnifierAppDelegate.py */; };
+		07D86040114811A2006EA8A6 /* DictUnifierAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D8603F114811A2006EA8A6 /* DictUnifierAppDelegate.m */; };
+		07D860471148128D006EA8A6 /* DUWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D860461148128D006EA8A6 /* DUWindow.m */; };
+		07D86066114812F0006EA8A6 /* DUImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D86065114812F0006EA8A6 /* DUImageView.m */; };
+		07D8607A1148154C006EA8A6 /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D8607711481541006EA8A6 /* Python.framework */; };
 		77C8C1F90C07829500965286 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C8C1F70C07829500965286 /* MainMenu.xib */; };
-		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -154,8 +132,8 @@
 		07687D931143E9C30032F3CD /* DictUnifier.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = DictUnifier.icns; sourceTree = "<group>"; };
 		07687DB71143EF690032F3CD /* done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done.png; sourceTree = "<group>"; };
 		07687DB81143EF690032F3CD /* dropper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropper.png; sourceTree = "<group>"; };
-		07687DFD1143F63F0032F3CD /* DUWindow.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = DUWindow.py; sourceTree = "<group>"; };
-		07687E391143FB250032F3CD /* DUImageView.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = DUImageView.py; sourceTree = "<group>"; };
+		076D37D4114A37DB00D55901 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
+		076D37D8114A380A00D55901 /* zh_CN */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = zh_CN; path = zh_CN.lproj/Localizable.strings; sourceTree = "<group>"; };
 		07D5795F11475B760033F5A4 /* DictInfo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DictInfo.plist; sourceTree = "<group>"; };
 		07D5796011475B760033F5A4 /* Dictionary.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = Dictionary.css; sourceTree = "<group>"; };
 		07D579C411475D930033F5A4 /* sdconv */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sdconv; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,8 +229,14 @@
 		07D57A67114760350033F5A4 /* gwin32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gwin32.h; sourceTree = "<group>"; };
 		07D57A68114760350033F5A4 /* glib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glib.h; sourceTree = "<group>"; };
 		07D57A69114760350033F5A4 /* glibconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = glibconfig.h; sourceTree = "<group>"; };
-		07D57A74114760BD0033F5A4 /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = System/Library/Frameworks/Python.framework; sourceTree = SDKROOT; };
 		07D57A79114760E00033F5A4 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		07D8603E114811A2006EA8A6 /* DictUnifierAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictUnifierAppDelegate.h; sourceTree = "<group>"; };
+		07D8603F114811A2006EA8A6 /* DictUnifierAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictUnifierAppDelegate.m; sourceTree = "<group>"; };
+		07D860451148128D006EA8A6 /* DUWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DUWindow.h; sourceTree = "<group>"; };
+		07D860461148128D006EA8A6 /* DUWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DUWindow.m; sourceTree = "<group>"; };
+		07D86064114812F0006EA8A6 /* DUImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DUImageView.h; sourceTree = "<group>"; };
+		07D86065114812F0006EA8A6 /* DUImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DUImageView.m; sourceTree = "<group>"; };
+		07D8607711481541006EA8A6 /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = System/Library/Frameworks/Python.framework; sourceTree = SDKROOT; };
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -260,9 +244,6 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* DictUnifier_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictUnifier_Prefix.pch; sourceTree = "<group>"; };
-		77631A260C06C501005415CB /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = /System/Library/Frameworks/Python.framework; sourceTree = "<absolute>"; };
-		77631A3E0C0748CF005415CB /* main.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = main.py; sourceTree = "<group>"; };
-		7790198E0C07548A00326F66 /* DictUnifierAppDelegate.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = DictUnifierAppDelegate.py; sourceTree = "<group>"; };
 		77C8C1F80C07829500965286 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* DictUnifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DictUnifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,8 +254,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07D8607A1148154C006EA8A6 /* Python.framework in Frameworks */,
 				07D57A2A11475FF30033F5A4 /* libglib-2.0.dylib in Frameworks */,
-				07D57A75114760BD0033F5A4 /* Python.framework in Frameworks */,
 				07D57A7A114760E00033F5A4 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,7 +265,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				77631A270C06C501005415CB /* Python.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,9 +405,12 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				07687DFD1143F63F0032F3CD /* DUWindow.py */,
-				07687E391143FB250032F3CD /* DUImageView.py */,
-				7790198E0C07548A00326F66 /* DictUnifierAppDelegate.py */,
+				07D8603E114811A2006EA8A6 /* DictUnifierAppDelegate.h */,
+				07D8603F114811A2006EA8A6 /* DictUnifierAppDelegate.m */,
+				07D860451148128D006EA8A6 /* DUWindow.h */,
+				07D860461148128D006EA8A6 /* DUWindow.m */,
+				07D86064114812F0006EA8A6 /* DUImageView.h */,
+				07D86065114812F0006EA8A6 /* DUImageView.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -435,7 +418,6 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				77631A260C06C501005415CB /* Python.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -471,8 +453,8 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				07D57A74114760BD0033F5A4 /* Python.framework */,
 				07D57A79114760E00033F5A4 /* libz.dylib */,
+				07D8607711481541006EA8A6 /* Python.framework */,
 			);
 			name = DictUnifier;
 			sourceTree = "<group>";
@@ -482,7 +464,6 @@
 			children = (
 				32CA4F630368D1EE00C91783 /* DictUnifier_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
-				77631A3E0C0748CF005415CB /* main.py */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -490,12 +471,13 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				076D37D6114A37FC00D55901 /* Localizable.strings */,
 				07687DB71143EF690032F3CD /* done.png */,
 				07687DB81143EF690032F3CD /* dropper.png */,
 				07687D931143E9C30032F3CD /* DictUnifier.icns */,
 				77C8C1F70C07829500965286 /* MainMenu.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
-				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				076D37E2114A383500D55901 /* InfoPlist.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -539,6 +521,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
+				076D380D114A3ACA00D55901 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -559,6 +542,13 @@
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "DictUnifier" */;
 			compatibilityVersion = "Xcode 3.0";
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+				zh_CN,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* DictUnifier */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -574,40 +564,32 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				77631A3F0C0748CF005415CB /* main.py in Resources */,
-				7790198F0C07548A00326F66 /* DictUnifierAppDelegate.py in Resources */,
+				076D37E3114A383500D55901 /* InfoPlist.strings in Resources */,
 				77C8C1F90C07829500965286 /* MainMenu.xib in Resources */,
 				07687D941143E9C30032F3CD /* DictUnifier.icns in Resources */,
 				07687DB91143EF690032F3CD /* done.png in Resources */,
 				07687DBA1143EF690032F3CD /* dropper.png in Resources */,
-				07687DFE1143F63F0032F3CD /* DUWindow.py in Resources */,
-				07687E3A1143FB250032F3CD /* DUImageView.py in Resources */,
-				07D579EC11475F0D0033F5A4 /* add_body_record in Resources */,
-				07D579ED11475F0D0033F5A4 /* add_key_index_record in Resources */,
-				07D579EE11475F0D0033F5A4 /* add_reference_index_record in Resources */,
-				07D579EF11475F0D0033F5A4 /* add_supplementary_key in Resources */,
-				07D579F011475F0D0033F5A4 /* build_dict.sh in Resources */,
-				07D579F111475F0D0033F5A4 /* build_key_index in Resources */,
-				07D579F211475F0D0033F5A4 /* build_reference_index in Resources */,
-				07D579F311475F0D0033F5A4 /* extract_front_matter_id.pl in Resources */,
-				07D579F411475F0D0033F5A4 /* extract_index.pl in Resources */,
-				07D579F511475F0D0033F5A4 /* extract_property.xsl in Resources */,
-				07D579F611475F0D0033F5A4 /* extract_referred_id.pl in Resources */,
-				07D579F711475F0D0033F5A4 /* generate_dict_template.sh in Resources */,
-				07D579F811475F0D0033F5A4 /* make_body.pl in Resources */,
-				07D579F911475F0D0033F5A4 /* make_dict_package in Resources */,
-				07D579FA11475F0D0033F5A4 /* make_line.pl in Resources */,
-				07D579FB11475F0D0033F5A4 /* make_readonly.pl in Resources */,
-				07D579FC11475F0D0033F5A4 /* normalize_key_text in Resources */,
-				07D579FD11475F0D0033F5A4 /* normalize_key_text.pl in Resources */,
-				07D579FE11475F0D0033F5A4 /* pick_referred_entry_id.pl in Resources */,
-				07D579FF11475F0D0033F5A4 /* remove_duplicate_key.pl in Resources */,
-				07D57A0011475F0D0033F5A4 /* replace_entryid_bodyid.pl in Resources */,
+				076D37D7114A37FC00D55901 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		076D380D114A3ACA00D55901 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "TARGET_NIB=${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/zh_CN.lproj/MainMenu.nib\nibtool --strings-file zh_CN.lproj/MainMenu.strings --write zh_CN.lproj/MainMenu.xib English.lproj/MainMenu.xib\nibtool --compile ${TARGET_NIB} zh_CN.lproj/MainMenu.xib";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		07D579C111475D930033F5A4 /* Sources */ = {
@@ -628,6 +610,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				07D86040114811A2006EA8A6 /* DictUnifierAppDelegate.m in Sources */,
+				07D860471148128D006EA8A6 /* DUWindow.m in Sources */,
+				07D86066114812F0006EA8A6 /* DUImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,7 +627,16 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+		076D37D6114A37FC00D55901 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				076D37D4114A37DB00D55901 /* English */,
+				076D37D8114A380A00D55901 /* zh_CN */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		076D37E2114A383500D55901 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				089C165DFE840E0CC02AAC07 /* English */,
@@ -718,6 +712,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = DictUnifier_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
@@ -739,6 +734,7 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = DictUnifier_Prefix.pch;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
@@ -756,8 +752,12 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
 				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				DSTROOT = "/tmp/$(PROJECT_NAME).dst";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "";
 				PREBINDING = NO;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 			};
@@ -768,9 +768,12 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
 				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				DSTROOT = "/tmp/$(PROJECT_NAME).dst";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = "";
 				PREBINDING = NO;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 			};

@@ -1,0 +1,26 @@
+﻿/* No comment provided by engineer. */
+"Building %@..." = "正在构建 %@...";
+
+/* No comment provided by engineer. */
+"Convert %@ failed, abort now." = "%@ 转换失败，已放弃";
+
+/* No comment provided by engineer. */
+"Converting %@..." = "正在转换 %@...";
+
+/* No comment provided by engineer. */
+"Done" = "完成";
+
+/* No comment provided by engineer. */
+"Drop a dictionary file to convert" = "拖入词典源文件开始转换";
+
+/* No comment provided by engineer. */
+"Enter a name to start building" = "输入要创建的词典名字";
+
+/* No comment provided by engineer. */
+"Installing into %@..." = "正在安装到 %@...";
+
+/* No comment provided by engineer. */
+"Start" = "开始";
+
+/* No comment provided by engineer. */
+"Stop" = "停止";
