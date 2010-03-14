@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		071DC178114CA6420062577C /* lua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 071DC176114CA6420062577C /* lua.cpp */; };
+		071DC182114CA7B10062577C /* libluajit-5.1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 071DC181114CA7B10062577C /* libluajit-5.1.a */; };
 		07687D941143E9C30032F3CD /* DictUnifier.icns in Resources */ = {isa = PBXBuildFile; fileRef = 07687D931143E9C30032F3CD /* DictUnifier.icns */; };
 		07687DB91143EF690032F3CD /* done.png in Resources */ = {isa = PBXBuildFile; fileRef = 07687DB71143EF690032F3CD /* done.png */; };
 		07687DBA1143EF690032F3CD /* dropper.png in Resources */ = {isa = PBXBuildFile; fileRef = 07687DB81143EF690032F3CD /* dropper.png */; };
@@ -129,6 +131,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		071DC176114CA6420062577C /* lua.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua.cpp; sourceTree = "<group>"; };
+		071DC177114CA6420062577C /* lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua.h; sourceTree = "<group>"; };
+		071DC181114CA7B10062577C /* libluajit-5.1.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libluajit-5.1.a"; path = "/usr/local/lib/libluajit-5.1.a"; sourceTree = "<absolute>"; };
 		07687D931143E9C30032F3CD /* DictUnifier.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = DictUnifier.icns; sourceTree = "<group>"; };
 		07687DB71143EF690032F3CD /* done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done.png; sourceTree = "<group>"; };
 		07687DB81143EF690032F3CD /* dropper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropper.png; sourceTree = "<group>"; };
@@ -257,6 +262,7 @@
 				07D8607A1148154C006EA8A6 /* Python.framework in Frameworks */,
 				07D57A2A11475FF30033F5A4 /* libglib-2.0.dylib in Frameworks */,
 				07D57A7A114760E00033F5A4 /* libz.dylib in Frameworks */,
+				071DC182114CA7B10062577C /* libluajit-5.1.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -311,6 +317,8 @@
 		07D57A1911475FF30033F5A4 /* sdconv */ = {
 			isa = PBXGroup;
 			children = (
+				071DC176114CA6420062577C /* lua.cpp */,
+				071DC177114CA6420062577C /* lua.h */,
 				07D57A2E114760350033F5A4 /* include */,
 				07D57A1A11475FF30033F5A4 /* convert.cpp */,
 				07D57A1B11475FF30033F5A4 /* convert.h */,
@@ -455,6 +463,7 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				07D57A79114760E00033F5A4 /* libz.dylib */,
 				07D8607711481541006EA8A6 /* Python.framework */,
+				071DC181114CA7B10062577C /* libluajit-5.1.a */,
 			);
 			name = DictUnifier;
 			sourceTree = "<group>";
@@ -602,6 +611,7 @@
 				07D57A2B11475FF30033F5A4 /* python.cpp in Sources */,
 				07D57A2C11475FF30033F5A4 /* sdconv.cpp in Sources */,
 				07D57A2D11475FF30033F5A4 /* storage.cpp in Sources */,
+				071DC178114CA6420062577C /* lua.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,20 +669,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				ARCHS = i386;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				HEADER_SEARCH_PATHS = sdconv/include;
+				HEADER_SEARCH_PATHS = (
+					sdconv/include,
+					"/usr/local/include/luajit-2.0",
+				);
 				INSTALL_PATH = /usr/local/bin;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/sdconv\"",
 				);
+				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				PRODUCT_NAME = sdconv;
 			};
@@ -682,19 +695,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				ARCHS = i386;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
-				HEADER_SEARCH_PATHS = sdconv/include;
+				HEADER_SEARCH_PATHS = (
+					sdconv/include,
+					"/usr/local/include/luajit-2.0",
+				);
 				INSTALL_PATH = /usr/local/bin;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/sdconv\"",
 				);
+				OTHER_LDFLAGS = "";
 				PREBINDING = NO;
 				PRODUCT_NAME = sdconv;
 				ZERO_LINK = NO;

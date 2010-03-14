@@ -3,6 +3,7 @@
 #include "dict.h"
 #include "convert.h"
 #include "python.h"
+#include "lua.h"
 #include "index.h"
 
 GString *mdk_start_convert(struct convert_module *mod)
@@ -27,8 +28,9 @@ inline bool convert_with_glib(gchar *src, GString *dest)
 }
 
 struct convert_module convert_module_list[] = {
-    { "default", 0, NULL,        convert_with_glib,   NULL        }, 
-    { "python",  1, init_python, convert_with_python, fini_python }, 
+    { "default", 0, NULL,        convert_with_glib,   NULL        },
+    { "python",  1, init_python, convert_with_python, fini_python },
+    { "lua",     1, init_lua,    convert_with_lua,    fini_lua    },
     { NULL,      0, NULL,        NULL,                NULL        },
 };
 
@@ -43,7 +45,7 @@ struct convert_module *mdk_get_convert_module(const char *name)
     return NULL;
 }
 
-void convert_with_module(struct convert_module *mod, 
+void convert_with_module(struct convert_module *mod,
                          gchar *src, GString *dest)
 {
     guint32 data_size, sec_size;
@@ -91,7 +93,7 @@ void convert_with_module(struct convert_module *mod,
 				p++;
 				sec_size = strlen(p) + 1;
 
-                g_string_append(dest, 
+                g_string_append(dest,
                                 "<p class=\"error\">Format not supported.</p>");
 				break;
 
@@ -105,7 +107,7 @@ void convert_with_module(struct convert_module *mod,
 					gchar *m_str = g_markup_escape_text(p, sec_size);
 					g_string_append(dest, m_str);
 					g_free(m_str);
-					g_string_append(dest, "</div>");
+					g_string_append(dest, "</div>\n");
 				}
 				sec_size++;
 				break;
@@ -141,7 +143,7 @@ void convert_with_module(struct convert_module *mod,
 					sec_size = strlen(p) + 1;
 				}
 
-				g_string_append(dest, 
+				g_string_append(dest,
                                 "<p class=\"error\">Unknown data type.</p>");
 				break;
 		}
@@ -150,7 +152,7 @@ void convert_with_module(struct convert_module *mod,
     }
 }
 
-void mdk_convert_index_with_module(struct convert_module *mod, 
+void mdk_convert_index_with_module(struct convert_module *mod,
                                    mdk_dict *dict,
                                    unsigned int index,
                                    GString *dest)
@@ -162,7 +164,7 @@ void mdk_convert_index_with_module(struct convert_module *mod,
 
     g_string_append_printf(dest, "<d:entry id=\"%d\" d:title=\"%s\">\n"
                                  "<d:index d:value=\"%s\"/>\n"
-                                 "<h1>%s</h1>\n", 
+                                 "<h1>%s</h1>\n",
                            index, m_str, m_str, m_str);
     g_free(m_str);
 
@@ -170,6 +172,6 @@ void mdk_convert_index_with_module(struct convert_module *mod,
     convert_with_module(mod, src, dest);
     g_free(src);
 
-    g_string_append(dest, "</d:entry>\n\n");
+    g_string_append(dest, "\n</d:entry>\n\n");
 }
 

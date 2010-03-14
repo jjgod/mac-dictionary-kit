@@ -8,9 +8,9 @@
 
 void show_usage()
 {
-    fprintf(stderr, "usage: sdconv [options] [script.py] <dict.ifo> [output.xml]\n\n"
+    fprintf(stderr, "usage: sdconv [options] [script] <dict.ifo> [output.xml]\n\n"
                     "Available options:\n"
-                    "   -m <module>: select convert module, available: python\n"
+                    "   -m <module>: select convert module, available: python, lua\n"
                     "   -d [num/r] : debug mode [num for start number, r for random]\n"
                     "   -h         : show this help page\n\n"
                     "For additional information, see http://mac-dictionary-kit.googlecode.com/\n");

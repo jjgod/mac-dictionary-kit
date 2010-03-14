@@ -27,7 +27,7 @@ void add_directory_of_file_to_path(const char *file)
     PyRun_SimpleString("import sys");
 
     char buf[256];
-    snprintf(buf, sizeof(buf), "sys.path.insert(0, '%s')", 
+    snprintf(buf, sizeof(buf), "sys.path.insert(0, '%s')",
              dirname((char *) file));
 
     PyRun_SimpleString(buf);
@@ -43,7 +43,7 @@ bool init_python(const char *file)
 
     Py_Initialize();
     add_directory_of_file_to_path(file);
-    
+
     fprintf(stderr, "loading module %s...\n", module_name);
     module = PyImport_ImportModule(module_name);
     if (! module)
@@ -51,7 +51,7 @@ bool init_python(const char *file)
 
     fprintf(stderr, "locating function transform...\n");
     /* locate py_module.transform() */
-    py_transform_func = PyObject_GetAttrString(module, 
+    py_transform_func = PyObject_GetAttrString(module,
                                                "transform");
     Py_DECREF(module);
     if (! py_transform_func)
@@ -75,8 +75,7 @@ void fini_python()
 bool convert_with_python(gchar *src, GString *dest)
 {
     PyObject *pargs = Py_BuildValue("(s)", src);
-    PyObject *pstr  = PyEval_CallObject(py_transform_func, 
-                                        pargs);
+    PyObject *pstr  = PyEval_CallObject(py_transform_func, pargs);
 
     if (pstr)
     {
