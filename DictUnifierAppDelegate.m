@@ -65,7 +65,7 @@
     [nameField setStringValue: [outputArray objectAtIndex: 0]];
 
     self.totalEntries = [[outputArray objectAtIndex: 1] integerValue];
-    NSLog(@"totalEntries = %u", self.totalEntries);
+    NSLog(@"totalEntries = %lu", self.totalEntries);
     if (self.totalEntries <= 0)
         self.totalEntries = 1;
 
@@ -121,12 +121,12 @@
             goto exit;
         }
 
-        NSArray *dirContents = [manager directoryContentsAtPath: self.tempDir];
+        NSArray *dirContents = [manager contentsOfDirectoryAtPath: self.tempDir error: NULL];
         if ([dirContents count])
         {
             NSString *extractedPath = [self.tempDir stringByAppendingPathComponent:
                                        [dirContents objectAtIndex: 0]];
-            dirContents = [manager directoryContentsAtPath: extractedPath];
+            dirContents = [manager contentsOfDirectoryAtPath: extractedPath error: NULL];
             for (NSString *file in dirContents)
                 if ([[file pathExtension] isEqual: @"ifo"])
                     ifoFile = [extractedPath stringByAppendingPathComponent: file];
@@ -157,7 +157,7 @@
 
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *templateDir = [[bundle resourcePath] stringByAppendingPathComponent: @"templates"];
-    NSArray *dirContents = [manager directoryContentsAtPath: templateDir];
+    NSArray *dirContents = [manager contentsOfDirectoryAtPath: templateDir error: NULL];
 
     // Copy all the files under templates directory to temporary dictionary building directory
     for (NSString *file in dirContents)
@@ -240,8 +240,10 @@ exit:
     {
 		NSData *data = [userInfo objectForKey: NSFileHandleNotificationDataItem];
 		NSUInteger length = [data length];
-        if (length == 0)
+        if (length == 0) {
+            [[notification object] readInBackgroundAndNotify];
             return;
+        }
 
         NSString *str = [NSString stringWithUTF8String: [data bytes]];
         NSArray *lines = [str componentsSeparatedByString: @"\n"];
@@ -345,9 +347,10 @@ exit:
     // If we have Mac OS X 10.6, use the new (compress) feature provided by
     // Dictionary Development Kit
     SInt32 versionMinor;
-    if (Gestalt(gestaltSystemVersionMinor, &versionMinor) != noErr && versionMinor >= 6) {
-        [arguments insertObject: @"-v"   atIndex: 1];
-        [arguments insertObject: @"10.6" atIndex: 2];
+    if (Gestalt(gestaltSystemVersionMinor, &versionMinor) == noErr && versionMinor >= 6) {
+        [arguments insertObject: @"-v"   atIndex: 0];
+        [arguments insertObject: @"10.6" atIndex: 1];
+        NSLog(@"%@", arguments);
     }
 
     [task setEnvironment: environments];

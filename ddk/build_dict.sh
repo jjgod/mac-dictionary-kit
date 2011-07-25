@@ -4,6 +4,9 @@
 #
 #
 
+DICT_BUILD_TOOL_DIR=${DICT_BUILD_TOOL_DIR:-"/Developer/Extras/Dictionary Development Kit"}
+DICT_BUILD_TOOL_BIN="$DICT_BUILD_TOOL_DIR/bin"
+
 do_add_supplementary_key=1
 preserve_unused_ref_id_in_reference_index=0
 
@@ -189,8 +192,10 @@ fi
 # Make the dictioanry read-only
 echo "- Fixing dictionary property."
 mv $OBJECTS_DIR/dict.dictionary/Contents/Info.plist $OBJECTS_DIR/Info.plist
+plutil -convert xml1 $OBJECTS_DIR/Info.plist
 "$DICT_BUILD_TOOL_BIN"/make_readonly.pl < $OBJECTS_DIR/Info.plist > $OBJECTS_DIR/dict.dictionary/Contents/Info.plist || error "Error."
 rm $OBJECTS_DIR/Info.plist
+plutil -convert binary1 $OBJECTS_DIR/dict.dictionary/Contents/Info.plist
 
 # Copy other files.
 echo "- Copying CSS."

@@ -1,5 +1,6 @@
 // lua.cpp
 
+#if 0
 #include "lua.h"
 #include <lua.hpp>
 
@@ -39,3 +40,4 @@ bool convert_with_lua(gchar *src, GString *dest)
     return true;
 }
 
+#endif

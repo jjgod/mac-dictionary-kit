@@ -14,6 +14,10 @@ use open ':std';
 my $sp			= "[[:blank:]\n]";		# 
 my $reqsp		= "[[:blank:]\n]+";		# required space
 my $optsp		= "[[:blank:]\n]*";		# optional space
+
+my $qattr		= "(\"[^\"]*\"|'[^']*')";	# quoted attribute value
+my $qattr_ne	= "(\"[^\"]+\"|'[^']+')";	# quoted attribute value (non-empty)
+
 # namespace
 my $ns							= "d:";
 # node name
@@ -79,9 +83,10 @@ sub process_an_entry
 		die "No entry tag ** [$entry] **";
 	}
 	
-	if ( $entry_tag =~ /$reqsp$id_atnm$optsp=$optsp"([^"]+)"/ )
+	if ( $entry_tag =~ /$reqsp$id_atnm$optsp=$optsp($qattr_ne)/ )
 	{
-		$entry_id	= $1;
+		$1 =~ /^(["']{1})([^\1]*)\1$/;
+		$entry_id	= $2;
 	}
 		
 	if ( ! defined( $entry_id ) || ( $entry_id eq '' ) )
@@ -90,16 +95,21 @@ sub process_an_entry
 	}
 	
 	# Check parental-control attr in the entry.
-	if ( $entry_tag =~ /$reqsp$ns$parental_control_atnm$optsp=$optsp"([^"]+)"/ )
+	if ( $entry_tag =~ /$reqsp$ns$parental_control_atnm$optsp=$optsp($qattr_ne)/ )
 	{
-		$entry_parental_flag	= $1;
+		$1 =~ /^(["']{1})([^\1]*)\1$/;
+		$entry_parental_flag	= $2;
 	}
 	
 	
 	# Check entry_title (title attr in the entry).
-	if ( $entry_tag =~ /$reqsp$ns$title_atnm$optsp=$optsp"([^"]*)"/ )
+	if ( $entry_tag =~ /$reqsp$ns$title_atnm$optsp=$optsp($qattr)/ )
 	{
-		$entry_title	= $1;
+		$1 =~ /^(["']{1})([^\1]*)\1$/;
+		if ( defined( $2 ) && $2 ne '' )
+		{
+			$entry_title	= $2;
+		}
 	}
 	if ( ! defined( $entry_title ) )
 	{
@@ -118,9 +128,10 @@ sub process_an_entry
 	$entry_title = decode_xml_char( $entry_title );
 	
 	# Check yomi attr in the entry.
-	if ( $entry_tag =~ /$reqsp$ns$yomi_atnm$optsp=$optsp"([^"]+)"/ )
+	if ( $entry_tag =~ /$reqsp$ns$yomi_atnm$optsp=$optsp($qattr_ne)/ )
 	{
-		$entry_yomi	= $1;
+		$1 =~ /^(["']{1})([^\1]*)\1$/;
+		$entry_yomi	= $2;
 	}
 	
 	
@@ -157,14 +168,16 @@ sub process_an_index
 	
 	# printf STDERR "[%s][%s]\n", $entry_id, $index;			# 
 	
-	if ( $index =~ /$reqsp$ns$value_atnm$optsp=$optsp"([^"]+)"/ )
+	if ( $index =~ /$reqsp$ns$value_atnm$optsp=$optsp($qattr_ne)/ )
 	{
-		$value	= $1;
+		$1 =~ /^(["']{1})([^\1]*)\1$/;
+		$value	= $2;
 	}
 	
-	if ( $index =~ /$reqsp$ns$title_atnm$optsp=$optsp"([^"]+)"/ )
+	if ( $index =~ /$reqsp$ns$title_atnm$optsp=$optsp($qattr_ne)/ )
 	{
-		$title	= $1;
+		$1 =~ /^(["']{1})([^\1]*)\1$/;
+		$title	= $2;
 	}
 	if ( ! defined( $title ) )
 	{
@@ -172,9 +185,10 @@ sub process_an_index
 	}
 	
 	# parental-control (optional)
-	if ( $index =~ /$reqsp$ns$parental_control_atnm$optsp=$optsp"([^"]+)"/ )
+	if ( $index =~ /$reqsp$ns$parental_control_atnm$optsp=$optsp($qattr_ne)/ )
 	{
-		$index_parental_flag	= $1;
+		$1 =~ /^(["']{1})([^\1]*)\1$/;
+		$index_parental_flag	= $2;
 	}
 	if ( $index_parental_flag > 0 )
 	{
@@ -187,9 +201,10 @@ sub process_an_index
 	}
 	
 	# priority (optional)
-	if ( $index =~ /$reqsp$ns$priority_atnm$optsp=$optsp"([^"]+)"/ )
+	if ( $index =~ /$reqsp$ns$priority_atnm$optsp=$optsp($qattr_ne)/ )
 	{
-		$index_priority_flag	= $1;
+		$1 =~ /^(["']{1})([^\1]*)\1$/;
+		$index_priority_flag	= $2;
 	}
 	if ( defined( $index_priority_flag ) && $index_priority_flag > 0 )
 	{
@@ -206,15 +221,17 @@ sub process_an_index
 	}
 	
 	# anchor (optional)
-	if ( $index =~ /$reqsp$ns$anchor_atnm$optsp=$optsp"([^"]+)"/ )
+	if ( $index =~ /$reqsp$ns$anchor_atnm$optsp=$optsp($qattr_ne)/ )
 	{
-		$anchor	= $1;
+		$1 =~ /^(["']{1})([^\1]*)\1$/;
+		$anchor	= $2;
 	}
 	
 	# yomi (optional)
-	if ( $index =~ /$reqsp$ns$yomi_atnm$optsp=$optsp"([^"]+)"/ )
+	if ( $index =~ /$reqsp$ns$yomi_atnm$optsp=$optsp($qattr_ne)/ )
 	{
-		$yomi	= $1;
+		$1 =~ /^(["']{1})([^\1]*)\1$/;
+		$yomi	= $2;
 	}
 	if ( ! defined( $yomi ) )
 	{

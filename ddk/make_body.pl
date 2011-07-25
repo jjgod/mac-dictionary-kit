@@ -18,6 +18,10 @@ require bytes;
 my $sp			= "[[:blank:]\n]";		# 
 my $reqsp		= "[[:blank:]\n]+";		# required space
 my $optsp		= "[[:blank:]\n]*";		# optional space
+
+my $qattr		= "(\"[^\"]*\"|'[^']*')";	# quoted attribute value
+my $qattr_ne	= "(\"[^\"]+\"|'[^']+')";	# quoted attribute value (non-empty)
+
 # namespace
 my $ns							= "d:";
 # node name
@@ -63,8 +67,9 @@ while (<>) {
 	print BODY $_;
 	
 	my $bytesize = bytes::length($_);
-	die "No ID ** [$_] **" unless /^<${ns}entry [^<]+?id="([^"]+)"/;	# "
-	my $entry_id = "$1";
+	die "No ID ** [$_] **" unless /^<${ns}entry [^<]+?id$optsp=$optsp($qattr_ne)/;	# "
+	$1 =~ /^(["']{1})([^\1]*)\1$/;
+	my $entry_id = $2;
 	print INDEX "$entry_id\t$offset\t$bytesize\n";
 	# ++$serial;
 	$offset += $bytesize;

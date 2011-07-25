@@ -14,6 +14,10 @@ use open ':std';
 my $sp			= "[[:blank:]\n]";		# 
 my $reqsp		= "[[:blank:]\n]+";		# required space
 my $optsp		= "[[:blank:]\n]*";		# optional space
+
+my $qattr		= "(\"[^\"]*\"|'[^']*')";	# quoted attribute value
+my $qattr_ne	= "(\"[^\"]+\"|'[^']+')";	# quoted attribute value (non-empty)
+
 # namespace
 my $ns							= "d:";
 # node name
@@ -56,11 +60,12 @@ sub process_an_entry
 	
 	
 	my $text = $entry;
-	while ( $text =~ /(<$a_ndnm$reqsp$href$optsp=$optsp"([^"]+)"$optsp>.*?<\/$a_ndnm>)/ )
+	while ( $text =~ /(<$a_ndnm$reqsp$href$optsp=$optsp($qattr_ne)$optsp>.*?<\/$a_ndnm>)/ )
 	{
-		my $reference		= $1;
-		my $referred_url	= $2;
 		$text		= $';	#'
+		my $reference		= $1;
+		$2 =~ /^(["']{1})([^\1]*)\1$/;
+		my $referred_url	= $2;
 		process_a_referred_url( $referred_url );
 	}
 }
@@ -86,7 +91,7 @@ sub process_a_referred_url
 		if ( $referred_id ne "" )
 		{
 			# Remove dict_bundle_id part.
-			if ( $referred_id =~ /^([^"]+):(.*?)$/ )
+			if ( $referred_id =~ /^([^:]+):(.*?)$/ )
 			{
 				$referred_id	= $1;
 				$dict_bundle_id	= $2;
