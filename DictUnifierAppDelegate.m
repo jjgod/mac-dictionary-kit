@@ -229,37 +229,6 @@ exit:
     return [task terminationStatus];
 }
 
-- (void) bodyListFileHandleRead: (NSNotification *) notification
-{
-	NSDictionary *userInfo = [notification userInfo];
-	int error = [[userInfo objectForKey: @"NSFileHandleError"] intValue];
-
-    if (error)
-        NSLog(@"DictUnifier: error %d.", error);
-    else
-    {
-		NSData *data = [userInfo objectForKey: NSFileHandleNotificationDataItem];
-		NSUInteger length = [data length];
-        if (length == 0) {
-            [[notification object] readInBackgroundAndNotify];
-            return;
-        }
-
-        NSString *str = [NSString stringWithUTF8String: [data bytes]];
-        NSArray *lines = [str componentsSeparatedByString: @"\n"];
-        // First and last lines may not be valid
-        if ([lines count] >= 3)
-        {
-            NSString *lineStr = [lines objectAtIndex: [lines count] - 2];
-            NSArray *components = [lineStr componentsSeparatedByString: @"\t"];
-            int curr = [[components objectAtIndex: 0] intValue];
-            [self setProgress: curr * 100.0 / self.totalEntries];
-        }
-
-        [[notification object] readInBackgroundAndNotify];
-    }
-}
-
 - (void) taskFileHandleRead: (NSNotification *) notification
 {
 	NSDictionary *userInfo = [notification userInfo];
@@ -294,14 +263,36 @@ exit:
                 {
                     if ([[NSFileManager defaultManager] fileExistsAtPath: bodyList])
                     {
-                        NSFileHandle *handle = [NSFileHandle fileHandleForReadingAtPath: bodyList];
+                        int fd = open([bodyList fileSystemRepresentation], O_RDONLY);
                         NSLog(@"Start watching %@", bodyList);
                         [progressBar setIndeterminate: NO];
-                        [[NSNotificationCenter defaultCenter] addObserver: self
-                                                                 selector: @selector(bodyListFileHandleRead:)
-                                                                     name: NSFileHandleReadCompletionNotification
-                                                                   object: handle];
-                        [handle readInBackgroundAndNotify];
+                        dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+                        dispatch_source_t fileSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ, fd, 0, globalQueue);
+                        dispatch_source_set_event_handler(fileSource, ^{
+                            char buf[1024];
+                            int len = read(fd, buf, sizeof(buf));
+                            if (len > 0) {
+                                // NSLog(@"Got data from stdin: %.*s", len, buf);
+                                int i;
+                                // scan backwards for the first \t, it's where the last processed item number ends
+                                for (i = len - 1; i >= 0 && buf[i] != '\t'; i--)
+                                    ;
+                                // scan backwards to read in the last processed item number
+                                if (i > 0 && buf[i] == '\t') {
+                                    int end = i;
+                                    for (i--; i >= 0 && buf[i] != '\n'; i--)
+                                        ;
+                                    if (buf[i] == '\n') {
+                                        buf[end] = '\0';
+                                        char *str = buf + i + 1;
+                                        int curr = 0;
+                                        sscanf(str, "%d", &curr);
+                                        [self setProgress: curr * 100.0 / self.totalEntries];
+                                    }
+                                }
+                            }
+                        });
+                        dispatch_resume(fileSource);
                         break;
                     } else
                         sleep(0.5);
