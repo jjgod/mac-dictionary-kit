@@ -268,6 +268,7 @@ exit:
                         [progressBar setIndeterminate: NO];
                         dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
                         dispatch_source_t fileSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ, fd, 0, globalQueue);
+                        dispatch_source_set_cancel_handler(fileSource, ^{ close(fd); } );
                         dispatch_source_set_event_handler(fileSource, ^{
                             char buf[1024];
                             int len = read(fd, buf, sizeof(buf));
@@ -332,7 +333,7 @@ exit:
                                     @"en_US.UTF-8", @"LANG",
                                     binaryDir, @"DICT_BUILD_TOOL_BIN", nil];
     NSMutableArray *arguments = [NSMutableArray arrayWithObjects:
-                                    self.dictID, @"Dictionary.xml",
+                                 [NSString stringWithFormat: @"'%@'", self.dictID], @"Dictionary.xml",
                                     @"Dictionary.css", @"DictInfo.plist", nil];
 
     // If we have Mac OS X 10.6, use the new (compress) feature provided by
