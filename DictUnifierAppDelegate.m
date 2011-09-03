@@ -65,7 +65,7 @@
     [nameField setStringValue: [outputArray objectAtIndex: 0]];
 
     self.totalEntries = [[outputArray objectAtIndex: 1] integerValue];
-    NSLog(@"totalEntries = %u", self.totalEntries);
+    NSLog(@"totalEntries = %lu", self.totalEntries);
     if (self.totalEntries <= 0)
         self.totalEntries = 1;
 
@@ -121,12 +121,12 @@
             goto exit;
         }
 
-        NSArray *dirContents = [manager directoryContentsAtPath: self.tempDir];
+        NSArray *dirContents = [manager contentsOfDirectoryAtPath: self.tempDir error: NULL];
         if ([dirContents count])
         {
             NSString *extractedPath = [self.tempDir stringByAppendingPathComponent:
                                        [dirContents objectAtIndex: 0]];
-            dirContents = [manager directoryContentsAtPath: extractedPath];
+            dirContents = [manager contentsOfDirectoryAtPath: extractedPath error: NULL];
             for (NSString *file in dirContents)
                 if ([[file pathExtension] isEqual: @"ifo"])
                     ifoFile = [extractedPath stringByAppendingPathComponent: file];
@@ -157,7 +157,7 @@
 
     NSBundle *bundle = [NSBundle mainBundle];
     NSString *templateDir = [[bundle resourcePath] stringByAppendingPathComponent: @"templates"];
-    NSArray *dirContents = [manager directoryContentsAtPath: templateDir];
+    NSArray *dirContents = [manager contentsOfDirectoryAtPath: templateDir error: NULL];
 
     // Copy all the files under templates directory to temporary dictionary building directory
     for (NSString *file in dirContents)
@@ -229,88 +229,6 @@ exit:
     return [task terminationStatus];
 }
 
-- (void) bodyListFileHandleRead: (NSNotification *) notification
-{
-	NSDictionary *userInfo = [notification userInfo];
-	int error = [[userInfo objectForKey: @"NSFileHandleError"] intValue];
-
-    if (error)
-        NSLog(@"DictUnifier: error %d.", error);
-    else
-    {
-		NSData *data = [userInfo objectForKey: NSFileHandleNotificationDataItem];
-		NSUInteger length = [data length];
-        if (length == 0)
-            return;
-
-        NSString *str = [NSString stringWithUTF8String: [data bytes]];
-        NSArray *lines = [str componentsSeparatedByString: @"\n"];
-        // First and last lines may not be valid
-        if ([lines count] >= 3)
-        {
-            NSString *lineStr = [lines objectAtIndex: [lines count] - 2];
-            NSArray *components = [lineStr componentsSeparatedByString: @"\t"];
-            int curr = [[components objectAtIndex: 0] intValue];
-            [self setProgress: curr * 100.0 / self.totalEntries];
-        }
-
-        [[notification object] readInBackgroundAndNotify];
-    }
-}
-
-- (void) taskFileHandleRead: (NSNotification *) notification
-{
-	NSDictionary *userInfo = [notification userInfo];
-	int error = [[userInfo objectForKey: @"NSFileHandleError"] intValue];
-
-    if (error)
-        NSLog(@"DictUnifier: error %d.", error);
-    else
-    {
-		NSData *data = [userInfo objectForKey: NSFileHandleNotificationDataItem];
-		NSUInteger length = [data length];
-        if (length == 0)
-            return;
-
-        NSString *str = [NSString stringWithUTF8String: [data bytes]];
-
-        if ([str hasPrefix: @"- "])
-        {
-            NSUInteger start, end;
-            [str getLineStart: &start
-                          end: &end
-                  contentsEnd: NULL
-                     forRange: NSMakeRange(0, 0)];
-            NSString *statusStr = [str substringWithRange: NSMakeRange(start + 2,
-                                                                       end - start - 3)];
-            [self setStatus: NSLocalizedString(statusStr, "status during dictionary building")];
-            if ([statusStr rangeOfString: @"Adding body data"].location != NSNotFound)
-            {
-                NSString *bodyList = [[self.dictDir stringByAppendingPathComponent: @"objects"]
-                                      stringByAppendingPathComponent: @"entry_body_list.txt"];
-                while (1)
-                {
-                    if ([[NSFileManager defaultManager] fileExistsAtPath: bodyList])
-                    {
-                        NSFileHandle *handle = [NSFileHandle fileHandleForReadingAtPath: bodyList];
-                        NSLog(@"Start watching %@", bodyList);
-                        [progressBar setIndeterminate: NO];
-                        [[NSNotificationCenter defaultCenter] addObserver: self
-                                                                 selector: @selector(bodyListFileHandleRead:)
-                                                                     name: NSFileHandleReadCompletionNotification
-                                                                   object: handle];
-                        [handle readInBackgroundAndNotify];
-                        break;
-                    } else
-                        sleep(0.5);
-                }
-            }
-        }
-
-        [[notification object] readInBackgroundAndNotify];
-    }
-}
-
 - (void) startBuildingWith: (NSString *) dictName
 {
     NSAutoreleasePool *pool = [NSAutoreleasePool new];
@@ -339,15 +257,16 @@ exit:
                                     @"en_US.UTF-8", @"LANG",
                                     binaryDir, @"DICT_BUILD_TOOL_BIN", nil];
     NSMutableArray *arguments = [NSMutableArray arrayWithObjects:
-                                    self.dictID, @"Dictionary.xml",
+                                 [NSString stringWithFormat: @"%@", self.dictID], @"Dictionary.xml",
                                     @"Dictionary.css", @"DictInfo.plist", nil];
 
     // If we have Mac OS X 10.6, use the new (compress) feature provided by
     // Dictionary Development Kit
     SInt32 versionMinor;
-    if (Gestalt(gestaltSystemVersionMinor, &versionMinor) != noErr && versionMinor >= 6) {
-        [arguments insertObject: @"-v"   atIndex: 1];
-        [arguments insertObject: @"10.6" atIndex: 2];
+    if (Gestalt(gestaltSystemVersionMinor, &versionMinor) == noErr && versionMinor >= 6) {
+        [arguments insertObject: @"-v"   atIndex: 0];
+        [arguments insertObject: @"10.6" atIndex: 1];
+        NSLog(@"%@", arguments);
     }
 
     [task setEnvironment: environments];
@@ -355,15 +274,94 @@ exit:
     [task setLaunchPath: [binaryDir stringByAppendingPathComponent: @"build_dict.sh"]];
     [task setArguments: arguments];
     [task setStandardOutput: pipe];
-    [task setStandardError: pipe];
+    // [task setStandardError: pipe];
 
     // Read process output in background and update status accordingly
+    NSMutableString *taskOutput = [NSMutableString stringWithCapacity: 1024];
     NSFileHandle *readHandle = [pipe fileHandleForReading];
-    [[NSNotificationCenter defaultCenter] addObserver: self
-                                             selector: @selector(taskFileHandleRead:)
-                                                 name: NSFileHandleReadCompletionNotification
-                                               object: readHandle];
-    [readHandle readInBackgroundAndNotify];
+    __block NSUInteger lastReturn = 0;
+
+    readHandle.readabilityHandler = ^(NSFileHandle *file) {
+        NSData *data = [file availableData];
+		NSUInteger length = [data length];
+        if (length == 0)
+            return;
+        NSString *str = [NSString stringWithUTF8String: [data bytes]];
+        if (!str)
+            return;
+        [taskOutput appendString: str];
+        NSRange returnRange = [taskOutput rangeOfString: @"- "
+                                                options: NSBackwardsSearch
+                                                  range: NSMakeRange(lastReturn, taskOutput.length - lastReturn)];
+        if (returnRange.location == NSNotFound)
+            return;
+        NSRange lineRange = [taskOutput lineRangeForRange: NSMakeRange(returnRange.location, taskOutput.length - returnRange.location)];
+#if 0
+        NSLog(@"returnRange: %@, lastReturn = %lu, line = '%@', %@",
+              NSStringFromRange(returnRange), lastReturn,
+              [taskOutput substringWithRange: lineRange], NSStringFromRange(lineRange));
+#endif
+        if (returnRange.location == lastReturn)
+            return;
+        lastReturn = returnRange.location;
+        str = [taskOutput substringWithRange: lineRange];
+
+        if ([str hasPrefix: @"- "])
+        {
+            NSUInteger start, end;
+            [str getLineStart: &start
+                          end: &end
+                  contentsEnd: NULL
+                     forRange: NSMakeRange(0, 0)];
+            NSString *statusStr = [str substringWithRange: NSMakeRange(start + 2,
+                                                                       end - start - 3)];
+            [self setStatus: NSLocalizedString(statusStr, "status during dictionary building")];
+            if ([statusStr rangeOfString: @"Adding body data"].location != NSNotFound)
+            {
+                NSString *bodyList = [[self.dictDir stringByAppendingPathComponent: @"objects"]
+                                      stringByAppendingPathComponent: @"entry_body_list.txt"];
+                while (1)
+                {
+                    if ([[NSFileManager defaultManager] fileExistsAtPath: bodyList])
+                    {
+                        int fd = open([bodyList fileSystemRepresentation], O_RDONLY);
+                        NSLog(@"Start watching %@", bodyList);
+                        [progressBar setIndeterminate: NO];
+                        dispatch_queue_t globalQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+                        dispatch_source_t fileSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_READ, fd, 0, globalQueue);
+                        dispatch_source_set_cancel_handler(fileSource, ^{ close(fd); } );
+                        dispatch_source_set_event_handler(fileSource, ^{
+                            char buf[1024];
+                            int len = read(fd, buf, sizeof(buf));
+                            if (len > 0) {
+                                // NSLog(@"Got data from stdin: %.*s", len, buf);
+                                int i;
+                                // scan backwards for the first \t, it's where the last processed item number ends
+                                for (i = len - 1; i >= 0 && buf[i] != '\t'; i--)
+                                    ;
+                                // scan backwards to read in the last processed item number
+                                if (i > 0 && buf[i] == '\t') {
+                                    int end = i;
+                                    for (i--; i >= 0 && buf[i] != '\n'; i--)
+                                        ;
+                                    if (buf[i] == '\n') {
+                                        buf[end] = '\0';
+                                        char *str = buf + i + 1;
+                                        int curr = 0;
+                                        sscanf(str, "%d", &curr);
+                                        [self setProgress: curr * 100.0 / self.totalEntries];
+                                    }
+                                }
+                            }
+                        });
+                        dispatch_resume(fileSource);
+                        break;
+                    } else
+                        sleep(0.5);
+                }
+            }
+        }
+    };
     [task launch];
 
     self.buildTask = task;
@@ -375,6 +373,8 @@ exit:
                          stringByAppendingPathComponent: dictBasename];
     NSFileManager *manager = [[[NSFileManager alloc] init] autorelease];
     BOOL isDirectory;
+
+    NSLog(@"task exit with status: %d, %@", [task terminationStatus], srcDict);
 
     if (! [task terminationStatus] &&
         [manager fileExistsAtPath: srcDict isDirectory: &isDirectory] && isDirectory)
