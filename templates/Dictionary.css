@@ -9,6 +9,11 @@ h1	{
     font-family: "Baskerville";
 }
 
+html.apple_client-panel h1 {
+    font-size: 100%;
+    color: #777777;
+}
+
 h3	{
 	font-size: 100%;
 }
@@ -17,6 +22,10 @@ pre {
     /* overflow: auto; */
     white-space: pre-wrap;
     font-family: "Baskerville";
+}
+
+html.apple_client-panel pre {
+    white-space: normal;
 }
 
 span.column {
