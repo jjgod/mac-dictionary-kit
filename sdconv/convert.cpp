@@ -90,12 +90,15 @@ void convert_with_module(struct convert_module *mod,
 			case 'k':
 			case 'w':
 			case 'h':
-				p++;
-				sec_size = strlen(p) + 1;
-
-                g_string_append(dest,
-                                "<p class=\"error\">Format not supported.</p>");
-				break;
+                p++;
+                sec_size = strlen(p);
+                
+                if (sec_size) {
+                    g_string_append(dest, p);
+                }
+                
+                sec_size++;
+                break;
 
 			case 't':
             case 'y':
