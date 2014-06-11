@@ -2,9 +2,9 @@
 
 #include "dict.h"
 #include "convert.h"
-#include "python.h"
 #include "lua.h"
 #include "index.h"
+#include <arpa/inet.h>
 
 GString *mdk_start_convert(struct convert_module *mod)
 {
@@ -29,8 +29,6 @@ inline bool convert_with_glib(gchar *src, GString *dest)
 
 struct convert_module convert_module_list[] = {
     { "default", 0, NULL,        convert_with_glib,   NULL        },
-    { "python",  1, init_python, convert_with_python, fini_python },
-    // { "lua",     1, init_lua,    convert_with_lua,    fini_lua    },
     { NULL,      0, NULL,        NULL,                NULL        },
 };
 

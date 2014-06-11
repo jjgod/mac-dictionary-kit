@@ -1,5 +1,5 @@
 // dict.cpp
-
+#include <stdlib.h>
 #include "dict.h"
 
 static void parse_description(const char *p, long len, 

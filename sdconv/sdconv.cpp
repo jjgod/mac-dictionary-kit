@@ -4,6 +4,7 @@
 #include <sys/stat.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <locale.h>
 #include "mdk.h"
 
 void show_usage()
