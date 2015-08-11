@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string>DictUnifier.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>org.jjgod.${PRODUCT_NAME:identifier}</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

@@ -1,5 +1,7 @@
 // convert.cpp: convert modules
 
+#include <arpa/inet.h>
+
 #include "dict.h"
 #include "convert.h"
 #include "python.h"
@@ -174,4 +176,3 @@ void mdk_convert_index_with_module(struct convert_module *mod,
 
     g_string_append(dest, "\n</d:entry>\n\n");
 }
-

@@ -10,6 +10,7 @@
 		07048BBB13DDF11D00BD86F9 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07048BBA13DDF11D00BD86F9 /* libz.dylib */; };
 		07048BBD13DDF12400BD86F9 /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07048BBC13DDF12400BD86F9 /* Python.framework */; };
 		071DC178114CA6420062577C /* lua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 071DC176114CA6420062577C /* lua.cpp */; };
+		075208FD1B799D2700CD10AD /* libglib-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 075208FC1B799D2700CD10AD /* libglib-2.0.a */; };
 		07687D941143E9C30032F3CD /* DictUnifier.icns in Resources */ = {isa = PBXBuildFile; fileRef = 07687D931143E9C30032F3CD /* DictUnifier.icns */; };
 		07687DB91143EF690032F3CD /* done.png in Resources */ = {isa = PBXBuildFile; fileRef = 07687DB71143EF690032F3CD /* done.png */; };
 		07687DBA1143EF690032F3CD /* dropper.png in Resources */ = {isa = PBXBuildFile; fileRef = 07687DB81143EF690032F3CD /* dropper.png */; };
@@ -41,12 +42,10 @@
 		07D57A2711475FF30033F5A4 /* convert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D57A1A11475FF30033F5A4 /* convert.cpp */; };
 		07D57A2811475FF30033F5A4 /* dict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D57A1C11475FF30033F5A4 /* dict.cpp */; };
 		07D57A2911475FF30033F5A4 /* index.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D57A1E11475FF30033F5A4 /* index.cpp */; };
-		07D57A2A11475FF30033F5A4 /* libglib-2.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 07D57A2011475FF30033F5A4 /* libglib-2.0.dylib */; };
 		07D57A2B11475FF30033F5A4 /* python.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D57A2211475FF30033F5A4 /* python.cpp */; };
 		07D57A2C11475FF30033F5A4 /* sdconv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D57A2411475FF30033F5A4 /* sdconv.cpp */; };
 		07D57A2D11475FF30033F5A4 /* storage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D57A2511475FF30033F5A4 /* storage.cpp */; };
 		07D57A7F114761780033F5A4 /* sdconv in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07D579C411475D930033F5A4 /* sdconv */; };
-		07D57A86114761EE0033F5A4 /* libglib-2.0.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07D57A2011475FF30033F5A4 /* libglib-2.0.dylib */; };
 		07D86040114811A2006EA8A6 /* DictUnifierAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D8603F114811A2006EA8A6 /* DictUnifierAppDelegate.m */; };
 		07D860471148128D006EA8A6 /* DUWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D860461148128D006EA8A6 /* DUWindow.m */; };
 		07D86066114812F0006EA8A6 /* DUImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D86065114812F0006EA8A6 /* DUImageView.m */; };
@@ -123,7 +122,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				07D57A86114761EE0033F5A4 /* libglib-2.0.dylib in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +132,7 @@
 		07048BBC13DDF12400BD86F9 /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = ../../../../../System/Library/Frameworks/Python.framework; sourceTree = "<group>"; };
 		071DC176114CA6420062577C /* lua.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua.cpp; sourceTree = "<group>"; };
 		071DC177114CA6420062577C /* lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua.h; sourceTree = "<group>"; };
+		075208FC1B799D2700CD10AD /* libglib-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libglib-2.0.a"; path = "../../../usr/local/Cellar/glib/2.44.1/lib/libglib-2.0.a"; sourceTree = "<group>"; };
 		07687D931143E9C30032F3CD /* DictUnifier.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = DictUnifier.icns; sourceTree = "<group>"; };
 		07687DB71143EF690032F3CD /* done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done.png; sourceTree = "<group>"; };
 		07687DB81143EF690032F3CD /* dropper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropper.png; sourceTree = "<group>"; };
@@ -169,7 +168,6 @@
 		07D57A1D11475FF30033F5A4 /* dict.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dict.h; sourceTree = "<group>"; };
 		07D57A1E11475FF30033F5A4 /* index.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = index.cpp; sourceTree = "<group>"; };
 		07D57A1F11475FF30033F5A4 /* index.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = index.h; sourceTree = "<group>"; };
-		07D57A2011475FF30033F5A4 /* libglib-2.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = "libglib-2.0.dylib"; sourceTree = "<group>"; };
 		07D57A2111475FF30033F5A4 /* mdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mdk.h; sourceTree = "<group>"; };
 		07D57A2211475FF30033F5A4 /* python.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = python.cpp; sourceTree = "<group>"; };
 		07D57A2311475FF30033F5A4 /* python.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = python.h; sourceTree = "<group>"; };
@@ -257,9 +255,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				075208FD1B799D2700CD10AD /* libglib-2.0.a in Frameworks */,
 				07048BBD13DDF12400BD86F9 /* Python.framework in Frameworks */,
 				07048BBB13DDF11D00BD86F9 /* libz.dylib in Frameworks */,
-				07D57A2A11475FF30033F5A4 /* libglib-2.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,7 +321,6 @@
 				07D57A1D11475FF30033F5A4 /* dict.h */,
 				07D57A1E11475FF30033F5A4 /* index.cpp */,
 				07D57A1F11475FF30033F5A4 /* index.h */,
-				07D57A2011475FF30033F5A4 /* libglib-2.0.dylib */,
 				07D57A2111475FF30033F5A4 /* mdk.h */,
 				07D57A2211475FF30033F5A4 /* python.cpp */,
 				07D57A2311475FF30033F5A4 /* python.h */,
@@ -490,6 +487,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				075208FC1B799D2700CD10AD /* libglib-2.0.a */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
@@ -545,7 +543,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0410;
+				LastUpgradeCheck = 0700;
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "DictUnifier" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -669,7 +667,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = i386;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
@@ -681,8 +678,7 @@
 				INSTALL_PATH = /usr/local/bin;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/sdconv\"",
+					/usr/local/lib,
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = sdconv;
@@ -694,7 +690,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = i386;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
@@ -705,8 +700,7 @@
 				INSTALL_PATH = /usr/local/bin;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
-					"\"$(SRCROOT)/sdconv\"",
+					/usr/local/lib,
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = sdconv;
@@ -718,6 +712,7 @@
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 3;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -732,6 +727,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.jjgod.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = DictUnifier;
 				SDKROOT = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -743,6 +739,7 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 3;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
@@ -755,6 +752,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.jjgod.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = DictUnifier;
 				SDKROOT = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -765,13 +763,14 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				DSTROOT = "/tmp/$(PROJECT_NAME).dst";
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = "";
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
 			};
 			name = Debug;
@@ -779,7 +778,6 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				DSTROOT = "/tmp/$(PROJECT_NAME).dst";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = "";

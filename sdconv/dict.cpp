@@ -2,8 +2,9 @@
 
 #include "dict.h"
 
-static void parse_description(const char *p, long len, 
-                              std::string &description)
+#include <stdlib.h>
+
+static void parse_description(const char *p, long len, std::string &description)
 {
 	description.clear();
 	const char *p1 = p;
@@ -122,11 +123,11 @@ bool mdk_dict::load_ifo(const gchar *file)
 {
     gchar *buffer;
 
-	if (! g_file_get_contents(file, &buffer, NULL, NULL))
+	if (!g_file_get_contents(file, &buffer, NULL, NULL))
 		return false;
 
 #define DICT_MAGIC_DATA "StarDict's dict ifo file\nversion="
-	if (! g_str_has_prefix(buffer, DICT_MAGIC_DATA))
+	if (!g_str_has_prefix(buffer, DICT_MAGIC_DATA))
     {
 		g_free(buffer);
 		return false;

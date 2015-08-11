@@ -1,7 +1,7 @@
 // python.cpp
 
 #include <libgen.h>
-#include <python2.5/Python.h>
+#include <python2.7/Python.h>
 #include "python.h"
 
 PyObject *py_transform_func;

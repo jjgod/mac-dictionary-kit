@@ -336,10 +336,11 @@ exit:
                                  [NSString stringWithFormat: @"'%@'", self.dictID], @"Dictionary.xml",
                                     @"Dictionary.css", @"DictInfo.plist", nil];
 
-    // If we have Mac OS X 10.6, use the new (compress) feature provided by
-    // Dictionary Development Kit
-    SInt32 versionMinor;
-    if (Gestalt(gestaltSystemVersionMinor, &versionMinor) == noErr && versionMinor >= 6) {
+    // If we have Mac OS X 10.6, use the new (compress) feature provided by Dictionary Development Kit.
+    NSDictionary *version = [NSDictionary dictionaryWithContentsOfFile:@"/System/Library/CoreServices/SystemVersion.plist"];
+    NSString *productVersion = [version objectForKey:@"ProductVersion"];
+    NSInteger versionMinor = [[[productVersion componentsSeparatedByString:@"."] lastObject] integerValue];
+    if (versionMinor >= 6) {
         [arguments insertObject: @"-v"   atIndex: 0];
         [arguments insertObject: @"10.6" atIndex: 1];
         NSLog(@"%@", arguments);
