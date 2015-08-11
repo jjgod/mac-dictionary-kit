@@ -332,8 +332,7 @@ exit:
     NSDictionary *environments = [NSDictionary dictionaryWithObjectsAndKeys:
                                     @"en_US.UTF-8", @"LANG",
                                     binaryDir, @"DICT_BUILD_TOOL_BIN", nil];
-    NSMutableArray *arguments = [NSMutableArray arrayWithObjects:
-                                 [NSString stringWithFormat: @"'%@'", self.dictID], @"Dictionary.xml",
+    NSMutableArray *arguments = [NSMutableArray arrayWithObjects:self.dictID, @"Dictionary.xml",
                                     @"Dictionary.css", @"DictInfo.plist", nil];
 
     // If we have Mac OS X 10.6, use the new (compress) feature provided by Dictionary Development Kit.
@@ -341,7 +340,7 @@ exit:
     NSString *productVersion = [version objectForKey:@"ProductVersion"];
     NSInteger versionMinor = [[[productVersion componentsSeparatedByString:@"."] lastObject] integerValue];
     if (versionMinor >= 6) {
-        [arguments insertObject: @"-v"   atIndex: 0];
+        [arguments insertObject: @"-v" atIndex: 0];
         [arguments insertObject: versionMinor >= 11 ? @"10.11" : @"10.6" atIndex: 1];
         NSLog(@"%@", arguments);
     }
