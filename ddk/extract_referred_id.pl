@@ -58,15 +58,19 @@ sub process_an_entry
 	my ( $entry ) = @_;
 	# printf "== [%s]\n", $entry;
 	
-	
 	my $text = $entry;
-	while ( $text =~ /(<$a_ndnm$reqsp$href$optsp=$optsp($qattr_ne)$optsp>.*?<\/$a_ndnm>)/ )
+	
+	while ( $text =~ /((<$a_ndnm$reqsp[^>]+>).*?<\/$a_ndnm>)/ )
 	{
-		$text		= $';	#'
-		my $reference		= $1;
-		$2 =~ /^(["']{1})([^\1]*)\1$/;
-		my $referred_url	= $2;
-		process_a_referred_url( $referred_url );
+		$text			= $';	#'
+		#my $reference	= $1;
+		my $a_open_tag	= $2;
+		if ( $a_open_tag =~ /$reqsp$href$optsp=$optsp($qattr_ne)/ )
+		{
+			$1 =~ /^(["']{1})([^\1]*)\1$/;
+			my $referred_url	= $2;
+			process_a_referred_url( $referred_url );
+		}
 	}
 }
 

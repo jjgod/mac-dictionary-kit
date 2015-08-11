@@ -10,14 +10,16 @@ dictionary_vers=1
 compress_body=1
 body_id_size=4
 encrypt_body=0
-compress_triedata=0
-burst_trie=0
+compress_heapdata=0
+compress_indexdata=0
+compress_trie=0
 
 COMPRESS_OPT=
 ENCRYPT_OPT=
 TRIE_OPT=
+IDX_DICT_VERS=1
 
-while getopts c:e:t: opt
+while getopts c:e:t:v: opt
 do
 	case $opt in
 	c)
@@ -43,14 +45,24 @@ do
 		TRIE_OPT=$OPTARG
 		if [ $TRIE_OPT -gt 0 ]; then
 			dictionary_vers=2
-			burst_trie=1
-			if [ $TRIE_OPT -eq 2 ]; then
-				compress_triedata=1
+			compress_trie=1
+			if [ $TRIE_OPT -eq 3 ]; then
+			    compress_indexdata=1
+				compress_trie=2
+			fi
+			if [ $TRIE_OPT -gt 1 ]; then
+				compress_heapdata=1
 			fi
 		fi
 		;;
+	v)
+		IDX_DICT_VERS=$OPTARG
+		;;
 	esac
 done
+if [ $IDX_DICT_VERS -gt 2 ]; then
+	dictionary_vers=$IDX_DICT_VERS
+fi
 
 shift $((OPTIND - 1))
 
@@ -92,6 +104,10 @@ cat << END_OF_FILE
 						<string>DCSBodyDataIndex</string>
 					</dict>
 				</array>
+END_OF_FILE
+if [ $compress_indexdata -eq 0 ]
+then
+cat << END_OF_FILE 				
 				<key>IDXFixedDataFields</key>
 				<array>
 					<dict>
@@ -134,6 +150,9 @@ cat << END_OF_FILE
 						<integer>2</integer>
 					</dict>
 				</array>
+END_OF_FILE
+fi
+cat << END_OF_FILE 				
 			</dict>
 			<key>IDXIndexDataSizeLength</key>
 			<integer>2</integer>
@@ -159,7 +178,7 @@ cat << END_OF_FILE
 				<string>KeyText.data</string>
 END_OF_FILE
 
-if [ $compress_triedata -gt 0 ]
+if [ $compress_heapdata -gt 0 ]
 then
 cat << END_OF_FILE
 				<key>HeapDataCompressionType</key>
@@ -171,11 +190,11 @@ cat << END_OF_FILE
 			</dict>
 END_OF_FILE
 			
-if [ $burst_trie -gt 0 ]
+if [ $compress_trie -gt 0 ]
 then
 cat << END_OF_FILE
 			<key>TrieIndexCompressionType</key>
-			<integer>1</integer>
+			<integer>$compress_trie</integer>
 END_OF_FILE
 fi
 			
@@ -221,11 +240,11 @@ cat << END_OF_FILE
 			</dict>
 END_OF_FILE
 
-if [ $burst_trie -gt 0 ]
+if [ $compress_trie -gt 0 ]
 then
 cat << END_OF_FILE
 			<key>TrieIndexCompressionType</key>
-			<integer>1</integer>
+			<integer>$compress_trie</integer>
 END_OF_FILE
 fi
 

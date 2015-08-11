@@ -24,7 +24,7 @@ while ( my $record = <stdin> )
 		next;
 	}
 	
-	my ( $key_text, $body_id, $flags, $title, $anchor, $yomi, %entry_title ) = split /\t/, $record;
+	my ( $key_text, $body_id, $flags, $title, $anchor, $yomi, $entry_title ) = split /\t/, $record;
 	if ( not defined $anchor )
 	{
 		printf STDERR "*** Unknown format. Skipped [%s]\n", $record;
@@ -33,7 +33,7 @@ while ( my $record = <stdin> )
 	
 	my $normalized_key = createSearchKey( $key_text );
 	printf "%s\t%s\t%s\t%s\t%s\t%s\t%s\n", 
-		$normalized_key, $body_id, $flags, $title, $anchor, $yomi, %entry_title;
+		$normalized_key, $body_id, $flags, $title, $anchor, $yomi, $entry_title;
 }
 exit 0;
 

@@ -342,7 +342,7 @@ exit:
     NSInteger versionMinor = [[[productVersion componentsSeparatedByString:@"."] lastObject] integerValue];
     if (versionMinor >= 6) {
         [arguments insertObject: @"-v"   atIndex: 0];
-        [arguments insertObject: @"10.6" atIndex: 1];
+        [arguments insertObject: versionMinor >= 11 ? @"10.11" : @"10.6" atIndex: 1];
         NSLog(@"%@", arguments);
     }
 
