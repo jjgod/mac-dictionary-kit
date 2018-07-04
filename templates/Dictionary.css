@@ -4,24 +4,36 @@
 d|entry {
 }
 
-h1	{
-	font-size: 150%;
-    font-family: "Baskerville";
+body {
+    font-family: "PingFang SC";
+}
+
+html.apple_client-panel body {
+    font-family: "PingFang SC";
+    padding-bottom: 50px;
+    margin-bottom: 50px;
+}
+
+h1 {
+    font-size: 150%;
+    font-weight: normal;
+    margin-bottom: -15px;
 }
 
 html.apple_client-panel h1 {
-    font-size: 100%;
-    color: #777777;
+    font-size: 120%;
+    margin-top: -8px;
+    margin-bottom: -12px;
 }
 
-h3	{
-	font-size: 100%;
+h3 {
+    font-size: 100%;
+    font-weight: normal;
 }
 
 pre {
     /* overflow: auto; */
     white-space: pre-wrap;
-    font-family: "Baskerville";
 }
 
 html.apple_client-panel pre {
@@ -29,13 +41,12 @@ html.apple_client-panel pre {
 }
 
 span.column {
-	display: block;
-	border: solid 2px #c0c0c0;
-	margin-left: 2em;
-	margin-right: 2em;
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-	padding: 0.5em;
+    display: block;
+    border: solid 2px #c0c0c0;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: 0.5em;
+    padding: 0.5em;
 }
 
 div.y:before {
@@ -49,8 +60,12 @@ div.y:after {
 div.y {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-    font-family: "Baskerville";
-    font-size: 120%;
+    font-size: 100%;
     color: #333;
+}
+
+body.apple_all_view_body {
+    margin-left: 0.4em;
+    margin-top: 0.2em;
 }
 
