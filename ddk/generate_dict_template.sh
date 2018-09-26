@@ -4,7 +4,7 @@
 # generate_dict_template.sh
 #
 
-tool_vers=2
+tool_vers=3
 dictionary_vers=1
 
 compress_body=1
@@ -13,6 +13,7 @@ encrypt_body=0
 compress_heapdata=0
 compress_indexdata=0
 compress_trie=0
+mark_sortable=0
 
 COMPRESS_OPT=
 ENCRYPT_OPT=
@@ -49,6 +50,7 @@ do
 			if [ $TRIE_OPT -eq 3 ]; then
 			    compress_indexdata=1
 				compress_trie=2
+				mark_sortable=1
 			fi
 			if [ $TRIE_OPT -gt 1 ]; then
 				compress_heapdata=1
@@ -81,6 +83,14 @@ END_OF_FILE
 
 cat $PROP_LIST_FILE
 
+if [ $mark_sortable -gt 0 ]
+then
+cat << END_OF_FILE
+	<key>DCSDictionarySortAllowed_iOS</key>
+	<true/>
+END_OF_FILE
+fi
+
 cat << END_OF_FILE
 	<key>DCSDictionaryCSS</key>
 	<string>DefaultStyle.css</string>
@@ -107,7 +117,7 @@ cat << END_OF_FILE
 END_OF_FILE
 if [ $compress_indexdata -eq 0 ]
 then
-cat << END_OF_FILE 				
+cat << END_OF_FILE
 				<key>IDXFixedDataFields</key>
 				<array>
 					<dict>
@@ -151,8 +161,32 @@ cat << END_OF_FILE
 					</dict>
 				</array>
 END_OF_FILE
+else
+cat << END_OF_FILE
+				<key>IDXVariableDataFields</key>
+				<array>
+					<dict>
+						<key>IDXDataFieldName</key>
+						<string>DCSKeyword</string>
+						<key>IDXDataSizeLength</key>
+						<integer>2</integer>
+					</dict>
+					<dict>
+						<key>IDXDataFieldName</key>
+						<string>DCSHeadword</string>
+						<key>IDXDataSizeLength</key>
+						<integer>2</integer>
+					</dict>
+					<dict>
+						<key>IDXDataFieldName</key>
+						<string>DCSEntryTitle</string>
+						<key>IDXDataSizeLength</key>
+						<integer>2</integer>
+					</dict>
+				</array>
+END_OF_FILE
 fi
-cat << END_OF_FILE 				
+cat << END_OF_FILE
 			</dict>
 			<key>IDXIndexDataSizeLength</key>
 			<integer>2</integer>
