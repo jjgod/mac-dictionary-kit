@@ -16,5 +16,7 @@
     <string>GNU General Public License</string>
     <key>DCSDictionaryManufacturerName</key>
     <string>stardict</string>
+    <key>DCSDictionaryUseSystemAppearance</key>
+    <true/>
 </dict>
 </plist>
