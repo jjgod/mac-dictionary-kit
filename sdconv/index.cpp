@@ -14,7 +14,7 @@ mdk_index::~mdk_index()
 	g_free(entry_buffer);
 }
 
-guint32 mdk_index::entry_count()
+size_t mdk_index::entry_count()
 {
     return entry_list.size();
 }

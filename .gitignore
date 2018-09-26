@@ -2,3 +2,4 @@
 *.perspectivev3
 zh_CN.lproj/MainMenu.xib
 build/
+xcuserdata

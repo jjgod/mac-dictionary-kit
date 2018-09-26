@@ -271,16 +271,16 @@ exit:
                         dispatch_source_set_cancel_handler(fileSource, ^{ close(fd); } );
                         dispatch_source_set_event_handler(fileSource, ^{
                             char buf[1024];
-                            int len = read(fd, buf, sizeof(buf));
+                            ssize_t len = read(fd, buf, sizeof(buf));
                             if (len > 0) {
                                 // NSLog(@"Got data from stdin: %.*s", len, buf);
-                                int i;
+                                ssize_t i;
                                 // scan backwards for the first \t, it's where the last processed item number ends
                                 for (i = len - 1; i >= 0 && buf[i] != '\t'; i--)
                                     ;
                                 // scan backwards to read in the last processed item number
                                 if (i > 0 && buf[i] == '\t') {
-                                    int end = i;
+                                    ssize_t end = i;
                                     for (i--; i >= 0 && buf[i] != '\n'; i--)
                                         ;
                                     if (buf[i] == '\n') {

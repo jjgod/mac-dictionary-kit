@@ -11,7 +11,7 @@
 
 - (void) awakeFromNib
 {
-    [self registerForDraggedTypes: [NSArray arrayWithObjects: NSFilenamesPboardType, nil]];
+    [self registerForDraggedTypes: [NSArray arrayWithObjects: NSPasteboardTypeFileURL, nil]];
 }
 
 - (NSDragOperation) draggingEntered: (id < NSDraggingInfo >) sender
@@ -19,7 +19,7 @@
     NSPasteboard *pboard = [sender draggingPasteboard];
     NSDragOperation opType = NSDragOperationNone;
 
-    if ([[pboard types] containsObject: NSFilenamesPboardType])
+    if ([[pboard types] containsObject: NSPasteboardTypeFileURL])
         opType = NSDragOperationCopy;
 
     return opType;
@@ -30,9 +30,9 @@
     NSPasteboard *pboard = [sender draggingPasteboard];
     BOOL successful = NO;
 
-    if ([[pboard types] containsObject: NSFilenamesPboardType])
+    if ([[pboard types] containsObject: NSPasteboardTypeFileURL])
     {
-        NSArray *files = [pboard propertyListForType: NSFilenamesPboardType];
+        NSArray *files = [pboard propertyListForType: NSPasteboardTypeFileURL];
         [controller startConversion: [files objectAtIndex: 0]];
         successful = NO;
     }

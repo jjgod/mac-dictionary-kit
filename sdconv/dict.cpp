@@ -158,19 +158,17 @@ bool mdk_dict::load_ifo(const gchar *file)
 	}
 
 	p3 = strchr(p2 + sizeof("\nwordcount=")-1,'\n');
-	gchar *tmpstr = (gchar *)g_memdup(p2 + sizeof("\nwordcount=") - 1, 
-                                      p3 - (p2+sizeof("\nwordcount=") - 1) + 1);
+	gchar *tmpstr = (gchar *)g_memdup(p2 + sizeof("\nwordcount=") - 1, (guint)(p3 - (p2 + sizeof("\nwordcount=") - 1) + 1));
 	tmpstr[p3 - (p2 + sizeof("\nwordcount=") - 1)] = '\0';
-	wordcount = atol(tmpstr);
+	wordcount = (guint32)atol(tmpstr);
 	g_free(tmpstr);
 
 	p2 = strstr(p1,"\nsynwordcount=");
 	if (p2) {
 		p3 = strchr(p2 + sizeof("\nsynwordcount=") - 1, '\n');
-		gchar *tmpstr = (gchar *)g_memdup(p2 + sizeof("\nsynwordcount=") - 1, 
-                                          p3 - (p2 + sizeof("\nsynwordcount=") - 1) + 1);
+		gchar *tmpstr = (gchar *)g_memdup(p2 + sizeof("\nsynwordcount=") - 1, (guint)(p3 - (p2 + sizeof("\nsynwordcount=") - 1) + 1));
 		tmpstr[p3-(p2+sizeof("\nsynwordcount=")-1)] = '\0';
-		synwordcount = atol(tmpstr);
+		synwordcount = (guint32)atol(tmpstr);
 		g_free(tmpstr);
 	} else {
 		synwordcount = 0;
@@ -183,10 +181,9 @@ bool mdk_dict::load_ifo(const gchar *file)
     }
 
     p3 = strchr(p2+ sizeof("\nidxfilesize=")-1,'\n');
-    tmpstr = (gchar *)g_memdup(p2 + sizeof("\nidxfilesize=")-1, 
-                               p3 - (p2 + sizeof("\nidxfilesize=")-1)+1);
-    tmpstr[p3-(p2+sizeof("\nidxfilesize=")-1)] = '\0';
-    index_file_size = atol(tmpstr);
+    tmpstr = (gchar *)g_memdup(p2 + sizeof("\nidxfilesize=") - 1, (guint)(p3 - (p2 + sizeof("\nidxfilesize=") - 1) + 1));
+    tmpstr[p3 - (p2 + sizeof("\nidxfilesize=") - 1)] = '\0';
+    index_file_size = (guint32)atol(tmpstr);
     g_free(tmpstr);
 
     p2 = strstr(p1,"\ndicttype=");
@@ -280,8 +277,8 @@ gchar *mdk_dict::get_entry_data(mdk_entry *entry)
             return NULL;
         }
 
-        guint32 data_size;
-        gint sametypesequence_len = sametypesequence.length();
+        size_t data_size;
+        size_t sametypesequence_len = sametypesequence.length();
         // there have sametypesequence_len char being omitted.
         // Here is a bug fix of 2.4.8, which don't add sizeof(guint32) anymore.
         data_size = idxitem_size + sametypesequence_len; 
@@ -318,7 +315,7 @@ gchar *mdk_dict::get_entry_data(mdk_entry *entry)
         gchar *p1,*p2;
         p1 = data + sizeof(guint32);
         p2 = origin_data;
-        guint32 sec_size;
+        size_t sec_size;
         // copy the head items.
         for (i = 0; i < sametypesequence_len - 1; i++)
         {

@@ -38,7 +38,7 @@ public:
 	const std::string& dict_name() { return bookname; }
 	const std::string& dict_type() { return dicttype; }
 
-	guint32 get_entry_count()
+	size_t get_entry_count()
     {
         return index->entry_count();
     }

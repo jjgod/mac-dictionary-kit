@@ -50,7 +50,7 @@ struct convert_module *mdk_get_convert_module(const char *name)
 void convert_with_module(struct convert_module *mod,
                          gchar *src, GString *dest)
 {
-    guint32 data_size, sec_size;
+    size_t data_size, sec_size;
 
     data_size = get_uint32(src);
     src += sizeof(guint32);

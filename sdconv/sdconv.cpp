@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     int i = 1, debug_mode = DEBUG_MODE_OFF;
     FILE *fp;
     const char *outfile, *module_name = "default", *module_file = NULL;
-    int start = 0;
+    unsigned int start = 0;
 
     if (argc < 3)
         show_usage();
@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
                 // specify an start id
                 if (isdigit(argv[i][0]))
                 {
-                    start = strtol(argv[i++], NULL, 10);
+                    start = (unsigned int)strtol(argv[i++], NULL, 10);
 
                     if (start <= 0)
                     {
@@ -127,7 +127,7 @@ int main(int argc, char *argv[])
 
     const char *path = argv[i++];
     const std::string url(path);
-    int end, count;
+    size_t end, count;
     mdk_dict *dict = new mdk_dict;
 
     setlocale(LC_ALL, "");
@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
     {
         if (debug_mode == DEBUG_MODE_RANDOM)
         {
-            srandom(time(0));
+            srandom((unsigned)time(0));
 
             double r = random();
             start = count * r / RAND_MAX;
@@ -152,17 +152,15 @@ int main(int argc, char *argv[])
 
         else if (start >= count)
         {
-            fprintf(stderr, "%s: start entry id %d is larger than "
-                            "the total entry number (%d).\n",
+            fprintf(stderr, "%s: start entry id %u is larger than "
+                            "the total entry number (%lu).\n",
                     argv[0], start, count);
             return 1;
         }
         count = 1;
     }
 
-    printf("%s %d %d\n",
-           dict->dict_name().c_str(),
-           dict->get_entry_count(), start);
+    printf("%s %lu %u\n", dict->dict_name().c_str(), dict->get_entry_count(), start);
 
     end = start + count;
 

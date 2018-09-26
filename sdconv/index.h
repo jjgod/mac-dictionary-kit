@@ -34,7 +34,7 @@ public:
               guint32 fsize);
     bool get_entry(guint32 index, mdk_entry *entry);
 
-    guint32 entry_count();
+    size_t entry_count();
 
 private:
 	gchar               *entry_buffer;
