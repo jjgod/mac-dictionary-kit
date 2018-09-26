@@ -4,24 +4,21 @@
 d|entry {
 }
 
-h1	{
-	font-size: 150%;
-    font-family: "Baskerville";
+h1 {
+    font-size: 150%;
 }
 
 html.apple_client-panel h1 {
     font-size: 100%;
-    color: #777777;
 }
 
-h3	{
-	font-size: 100%;
+h3 {
+    font-size: 100%;
 }
 
 pre {
     /* overflow: auto; */
     white-space: pre-wrap;
-    font-family: "Baskerville";
 }
 
 html.apple_client-panel pre {
@@ -49,8 +46,13 @@ div.y:after {
 div.y {
     margin-top: 0.5em;
     margin-bottom: 0.5em;
-    font-family: "Baskerville";
     font-size: 120%;
     color: #333;
 }
 
+@media (prefers-dark-interface)
+{
+    body {
+        color: white;
+    }
+}
