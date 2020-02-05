@@ -32,8 +32,22 @@
 
     if ([[pboard types] containsObject: NSPasteboardTypeFileURL])
     {
-        NSArray *files = [pboard propertyListForType: NSPasteboardTypeFileURL];
-        [controller startConversion: [files objectAtIndex: 0]];
+        /**
+         Note: tmp fix
+         ENV: Xcode 11.3.1 (11C504) Catalina 10.15.3 (19D76)
+         
+         Don't know why  [pboard propertyListForType: NSPasteboardTypeFileURL]  returns a string directly instead of an array.
+         */
+        NSObject *data = [pboard propertyListForType: NSPasteboardTypeFileURL];
+        if ([data isKindOfClass: [NSArray class]]) {
+            NSArray * files = (NSArray *)data;
+            [controller startConversion: [files objectAtIndex: 0]];
+        } else if ([data isKindOfClass: [NSString class]]) {
+            NSString * filePath = (NSString *)data;
+            NSURL * fileUrl = [NSURL URLWithString: filePath];
+            [controller startConversion: fileUrl.path];
+        }
+
         successful = NO;
     }
 
