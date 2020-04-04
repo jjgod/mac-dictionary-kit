@@ -29,10 +29,14 @@
 {
     NSPasteboard *pboard = [sender draggingPasteboard];
     BOOL successful = NO;
-
+    
+    NSPasteboardType type = NSPasteboardTypeFileURL;
+    if (@available(macOS 10.15, *)) {
+        type = NSFilenamesPboardType;
+    }
     if ([[pboard types] containsObject: NSPasteboardTypeFileURL])
     {
-        NSArray *files = [pboard propertyListForType: NSPasteboardTypeFileURL];
+        NSArray *files = [pboard propertyListForType: type];
         [controller startConversion: [files objectAtIndex: 0]];
         successful = NO;
     }
