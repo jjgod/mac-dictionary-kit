@@ -719,7 +719,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 7;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -732,6 +732,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.jjgod.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = DictUnifier;
 				SDKROOT = "";
@@ -746,7 +747,7 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 7;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -758,6 +759,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				MARKETING_VERSION = 2.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.jjgod.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = DictUnifier;
 				SDKROOT = "";

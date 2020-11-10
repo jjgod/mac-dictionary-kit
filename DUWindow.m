@@ -27,16 +27,15 @@
 
 - (BOOL) performDragOperation: (id < NSDraggingInfo >) sender
 {
-    NSPasteboard *pboard = [sender draggingPasteboard];
     BOOL successful = NO;
-
-    if ([[pboard types] containsObject: NSPasteboardTypeFileURL])
-    {
-        NSArray *files = [pboard propertyListForType: NSPasteboardTypeFileURL];
-        [controller startConversion: [files objectAtIndex: 0]];
-        successful = NO;
+    NSPasteboard *pboard = [sender draggingPasteboard];
+    if ([[pboard types] containsObject:NSURLPboardType]) {
+        NSArray *urls = [pboard readObjectsForClasses:@[[NSURL class]] options:nil];
+        NSURL *firstURL = [urls firstObject];
+        NSString *pathString = [firstURL path];
+        [controller startConversion: pathString];
+        successful = YES;
     }
-
     return successful;
 }
 
