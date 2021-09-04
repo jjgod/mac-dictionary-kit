@@ -8,9 +8,18 @@ Download it from [GitHub releases, v2.1](https://github.com/jjgod/mac-dictionary
 
 ## Build instructions
 
-Install static build of glib before trying to build:
+**To prevent flashback when you drag the dictionary to convert in this app**
 
-    brew install glib --with-static
+Download the fixed version
+    https://pan.baidu.com/s/1cLONS1XzKMItgNLswN-mSA pw:rc5q
+    
+    Original: https://zhuanlan.zhihu.com/p/365794977 by 时间与金钱.
+
+1.Install homebrew first
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    
+2.Install glib
+    brew install glib
 
 ## TODO
 
