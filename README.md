@@ -8,7 +8,7 @@ Download it from [GitHub releases, v2.1](https://github.com/jjgod/mac-dictionary
 
 ## Build instructions
 
-**To prevent flashback when you drag the dictionary to convert in this app**
+## To prevent flashback when you drag the dictionary to convert in this app
 
 Download the fixed version
     https://pan.baidu.com/s/1cLONS1XzKMItgNLswN-mSA pw:rc5q
