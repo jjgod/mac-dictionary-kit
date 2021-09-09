@@ -7,7 +7,7 @@ http://download.huzheng.org/zh_CN/index.html
 
 ## Download
 
-Download it from [GitHub releases, v2.1](https://github.com/jjgod/mac-dictionary-kit/releases/download/v2.1/DictUnifier-2.1.zip).
+Download it from [GitHub releases, v2.2](https://github.com/isee15/mac-dictionary-kit/releases/download/v2.2/DictUnifier.zip).
 
 ## Build instructions
 
