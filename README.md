@@ -2,6 +2,9 @@
 
 Dictionary conversion tool for Mac OS X 10.5 and above.
 
+## 词典包地址
+http://download.huzheng.org/zh_CN/index.html
+
 ## Download
 
 Download it from [GitHub releases, v2.1](https://github.com/jjgod/mac-dictionary-kit/releases/download/v2.1/DictUnifier-2.1.zip).

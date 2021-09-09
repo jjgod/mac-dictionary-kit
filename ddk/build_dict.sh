@@ -107,7 +107,7 @@ echo "- Building $DICT_NAME.dictionary."
 
 # Check source XML.
 echo "- Checking source."
-xmllint --stream -noout "$SRC_FILE" || error "Error."
+# xmllint --stream -noout "$SRC_FILE" || error "Error."
 
 # Prepare directory.
 echo "- Cleaning objects directory."
