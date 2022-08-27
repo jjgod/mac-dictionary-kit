@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07048BBD13DDF12400BD86F9 /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07048BBC13DDF12400BD86F9 /* Python.framework */; };
-		071DC178114CA6420062577C /* lua.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 071DC176114CA6420062577C /* lua.cpp */; };
 		075208FD1B799D2700CD10AD /* libglib-2.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 075208FC1B799D2700CD10AD /* libglib-2.0.a */; };
 		07687D941143E9C30032F3CD /* DictUnifier.icns in Resources */ = {isa = PBXBuildFile; fileRef = 07687D931143E9C30032F3CD /* DictUnifier.icns */; };
 		07687DB91143EF690032F3CD /* done.png in Resources */ = {isa = PBXBuildFile; fileRef = 07687DB71143EF690032F3CD /* done.png */; };
@@ -41,7 +39,6 @@
 		07D57A2711475FF30033F5A4 /* convert.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D57A1A11475FF30033F5A4 /* convert.cpp */; };
 		07D57A2811475FF30033F5A4 /* dict.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D57A1C11475FF30033F5A4 /* dict.cpp */; };
 		07D57A2911475FF30033F5A4 /* index.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D57A1E11475FF30033F5A4 /* index.cpp */; };
-		07D57A2B11475FF30033F5A4 /* python.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D57A2211475FF30033F5A4 /* python.cpp */; };
 		07D57A2C11475FF30033F5A4 /* sdconv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D57A2411475FF30033F5A4 /* sdconv.cpp */; };
 		07D57A2D11475FF30033F5A4 /* storage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07D57A2511475FF30033F5A4 /* storage.cpp */; };
 		07D57A7F114761780033F5A4 /* sdconv in CopyFiles */ = {isa = PBXBuildFile; fileRef = 07D579C411475D930033F5A4 /* sdconv */; };
@@ -49,6 +46,7 @@
 		07D860471148128D006EA8A6 /* DUWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D860461148128D006EA8A6 /* DUWindow.m */; };
 		07D86066114812F0006EA8A6 /* DUImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 07D86065114812F0006EA8A6 /* DUImageView.m */; };
 		3A07337326E9E12F007E0174 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A07337226E9E12F007E0174 /* libz.tbd */; };
+		3A91E82528B9BEA10067F474 /* AppIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A91E82428B9BEA10067F474 /* AppIcon.png */; };
 		77C8C1F90C07829500965286 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C8C1F70C07829500965286 /* MainMenu.xib */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
@@ -128,10 +126,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		07048BBC13DDF12400BD86F9 /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = ../../../../../System/Library/Frameworks/Python.framework; sourceTree = "<group>"; };
 		071D72BB215BFB68005B3C8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		071DC176114CA6420062577C /* lua.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = lua.cpp; sourceTree = "<group>"; };
-		071DC177114CA6420062577C /* lua.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lua.h; sourceTree = "<group>"; };
 		075208FC1B799D2700CD10AD /* libglib-2.0.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libglib-2.0.a"; path = "../../../usr/local/Cellar/glib/2.44.1/lib/libglib-2.0.a"; sourceTree = "<group>"; };
 		07687D931143E9C30032F3CD /* DictUnifier.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = DictUnifier.icns; sourceTree = "<group>"; };
 		07687DB71143EF690032F3CD /* done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done.png; sourceTree = "<group>"; };
@@ -169,8 +164,6 @@
 		07D57A1E11475FF30033F5A4 /* index.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = index.cpp; sourceTree = "<group>"; };
 		07D57A1F11475FF30033F5A4 /* index.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = index.h; sourceTree = "<group>"; };
 		07D57A2111475FF30033F5A4 /* mdk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mdk.h; sourceTree = "<group>"; };
-		07D57A2211475FF30033F5A4 /* python.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = python.cpp; sourceTree = "<group>"; };
-		07D57A2311475FF30033F5A4 /* python.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = python.h; sourceTree = "<group>"; };
 		07D57A2411475FF30033F5A4 /* sdconv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sdconv.cpp; sourceTree = "<group>"; };
 		07D57A2511475FF30033F5A4 /* storage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = storage.cpp; sourceTree = "<group>"; };
 		07D57A2611475FF30033F5A4 /* storage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = storage.h; sourceTree = "<group>"; };
@@ -246,6 +239,7 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* DictUnifier_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DictUnifier_Prefix.pch; sourceTree = "<group>"; };
 		3A07337226E9E12F007E0174 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		3A91E82428B9BEA10067F474 /* AppIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon.png; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* DictUnifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DictUnifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -257,7 +251,6 @@
 			files = (
 				3A07337326E9E12F007E0174 /* libz.tbd in Frameworks */,
 				075208FD1B799D2700CD10AD /* libglib-2.0.a in Frameworks */,
-				07048BBD13DDF12400BD86F9 /* Python.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,8 +305,6 @@
 		07D57A1911475FF30033F5A4 /* sdconv */ = {
 			isa = PBXGroup;
 			children = (
-				071DC176114CA6420062577C /* lua.cpp */,
-				071DC177114CA6420062577C /* lua.h */,
 				07D57A2E114760350033F5A4 /* include */,
 				07D57A1A11475FF30033F5A4 /* convert.cpp */,
 				07D57A1B11475FF30033F5A4 /* convert.h */,
@@ -322,8 +313,6 @@
 				07D57A1E11475FF30033F5A4 /* index.cpp */,
 				07D57A1F11475FF30033F5A4 /* index.h */,
 				07D57A2111475FF30033F5A4 /* mdk.h */,
-				07D57A2211475FF30033F5A4 /* python.cpp */,
-				07D57A2311475FF30033F5A4 /* python.h */,
 				07D57A2411475FF30033F5A4 /* sdconv.cpp */,
 				07D57A2511475FF30033F5A4 /* storage.cpp */,
 				07D57A2611475FF30033F5A4 /* storage.h */,
@@ -447,7 +436,6 @@
 		29B97314FDCFA39411CA2CEA /* DictUnifier */ = {
 			isa = PBXGroup;
 			children = (
-				07048BBC13DDF12400BD86F9 /* Python.framework */,
 				07D57A1911475FF30033F5A4 /* sdconv */,
 				07D5799111475C5E0033F5A4 /* bin */,
 				07D5795E11475B760033F5A4 /* templates */,
@@ -472,6 +460,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3A91E82428B9BEA10067F474 /* AppIcon.png */,
 				076D37D6114A37FC00D55901 /* Localizable.strings */,
 				07687DB71143EF690032F3CD /* done.png */,
 				07687DB81143EF690032F3CD /* dropper.png */,
@@ -579,6 +568,7 @@
 				07687DB91143EF690032F3CD /* done.png in Resources */,
 				07687DBA1143EF690032F3CD /* dropper.png in Resources */,
 				076D37D7114A37FC00D55901 /* Localizable.strings in Resources */,
+				3A91E82528B9BEA10067F474 /* AppIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -608,10 +598,8 @@
 				07D57A2711475FF30033F5A4 /* convert.cpp in Sources */,
 				07D57A2811475FF30033F5A4 /* dict.cpp in Sources */,
 				07D57A2911475FF30033F5A4 /* index.cpp in Sources */,
-				07D57A2B11475FF30033F5A4 /* python.cpp in Sources */,
 				07D57A2C11475FF30033F5A4 /* sdconv.cpp in Sources */,
 				07D57A2D11475FF30033F5A4 /* storage.cpp in Sources */,
-				071DC178114CA6420062577C /* lua.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,6 +671,7 @@
 					"$(inherited)",
 					/usr/local/lib,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = sdconv;
 				SDKROOT = "";
@@ -706,6 +695,7 @@
 					"$(inherited)",
 					/usr/local/lib,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = sdconv;
 				SDKROOT = "";
@@ -733,6 +723,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.jjgod.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = DictUnifier;
 				SDKROOT = "";
@@ -760,6 +751,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.jjgod.${PRODUCT_NAME:identifier}";
 				PRODUCT_NAME = DictUnifier;
 				SDKROOT = "";
