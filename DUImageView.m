@@ -30,13 +30,15 @@
     NSPasteboard *pboard = [sender draggingPasteboard];
     BOOL successful = NO;
 
-    if ([[pboard types] containsObject: NSPasteboardTypeFileURL])
-    {
-        NSArray *files = [pboard propertyListForType: NSPasteboardTypeFileURL];
-        [controller startConversion: [files objectAtIndex: 0]];
+    if (pboard.pasteboardItems.count <= 1) {
+        //直接获取文件路径
+        
+        NSString *fileURL = [[NSURL URLFromPasteboard:pboard] path];
+        [controller startConversion:fileURL];
         successful = NO;
     }
-
+    
+    
     return successful;
 }
 
