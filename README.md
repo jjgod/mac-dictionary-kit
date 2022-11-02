@@ -16,10 +16,13 @@ Download it from [GitHub releases, v2.2](https://github.com/isee15/mac-dictionar
 ## Build instructions
 
 Install static build of glib before trying to build:
+```
 brew update
 brew install glib
+// brew install glib --with-static
+```
 
-    // brew install glib --with-static
+    
 
 ## TODO
 
